@@ -1,6 +1,6 @@
 import React from "react";
-// import Home from "./Pages/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Auth from "./Pages/Auth";
 // import Payment from "./Pages/Payment";
 // import Profile from "./Pages/Profile";
 import Class from "./Pages/Class";
