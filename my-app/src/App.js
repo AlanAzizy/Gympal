@@ -1,5 +1,6 @@
 import React from "react";
-// import Home from "./Pages/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Auth from "./Pages/Auth";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import Payment from "./Pages/Payment";
 import Profile from "./Pages/Profile";
@@ -11,6 +12,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Auth />} />
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/profile" element={<Profile />} />
           {/* <Route path="/payment" element={<Payment />} />
