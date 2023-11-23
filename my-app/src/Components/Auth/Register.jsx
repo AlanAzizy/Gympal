@@ -13,38 +13,46 @@ export default function Register({state}) {
   const [alamat, setAlamat] = useState('');
   const [noTelepon, setNoTelepon] = useState('');
   const [valid, setValid] = useState(true);
-  const navigete = useNavigate();
+  const navigate = useNavigate();
   
   // Menggunakan Axios untuk melakukan permintaan GET ke API
   const componentHandler = () => {
     state();
   }
 
-  const submitHandler= (event) => {
-    event.preventDefault();
+  const submitHandler= async (event) => {
     // setUser({email : email, password: password});
-    console.log(username);
-    axios.post(apiUrl, 
-      {
-        nama : username,
-        email: email,
-        password: password,
-        noTelepon : noTelepon,
-        alamat : alamat
-      },
-      {
-        headers:{"Content-Type": "application/json"}
-        
-      })
-      .then((response) => { 
-        console.log(response.data);
-        Cookies.setItem('token',response.data.token, { expires: new Date(jwtDecode(response.data.token).exp) });
-      })
-      .catch((error) => {
+    event.preventDefault();
+    try{
+      const response = await axios.post(apiUrl, 
+        {
+          email: email,
+          password: password
+        },
+        {
+          headers:{"Content-Type": "application/json"}
+          
+        });
+        console.log(jwtDecode(response.data.token).exp)
+        Cookies.setItem('token',response.data.token, { expires: (jwtDecode(response.data.token).exp) });
+        console.log(response);
+        if (response.status === 201) {
+          // Perform actions for successful login
+          // For example, set tokens or user data in local storage or state
+  
+          // After successful login, navigate to the desired page
+          localStorage.setItem('pengguna', JSON.stringify(response.data.pengguna));
+          navigate('/profile'); // Replace '/dashboard' with your desired route
+        } else {
+          // Handle unsuccessful login
+          console.log('Login failed');
+        }
+    }catch(error) {
         console.log(error)
-        setValid(false);
+        setValid(false);;
         console.error('Error saat mengambil data:', error);
-      });
+      };
+
   }
   return (<>
         <div className='col-6 d-flex flex-column justify-content-center align-items-center'>
