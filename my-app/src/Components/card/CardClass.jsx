@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import { ClassData } from "./cardDummy";
 import JohnDoe from "../../Assests/john-doe.jpg";
+import axios from 'axios';
 
 function CardClass() {
-  const data = ClassData;
+
+  const apiUrl = 'https://gympalv1.ambitiousmoss-bd081c95.australiaeast.azurecontainerapps.io/kelas/kelasBelumDilakukan'
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    // Make sure to perform the Axios request only once during initial component mount
+    axios.get(apiUrl)
+      .then(response => {
+        // Handle the response data as needed
+        setData(response.data);
+      })
+      .catch(error => {
+        // Handle error if the request fails
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
   return (
     <>
       <div className="row row-cols-1 row-cols-md-3 gap-4 mx-auto py-3 container">

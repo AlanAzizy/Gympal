@@ -1,6 +1,9 @@
 import { Link, useLocation  } from "react-router-dom";
 import { Setting } from "react-iconly";
 import { useState, useEffect } from "react";
+import axios from 'axios';
+
+
 export default function Navbar() {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("profile");
