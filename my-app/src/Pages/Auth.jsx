@@ -7,36 +7,12 @@ import logo from '../Assets/logo.png';
 
 
 export default function Auth() {
-  const [data, setData] = useState([]);
-  const apiUrl = 'http://localhost:3001/auth/login';
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');
   const [user, setUser] = useState({})
   const [isRegistered, setIsRegistered] = useState(true);
   
   // Menggunakan Axios untuk melakukan permintaan GET ke API
-  const submitHandler= (event) => {
-    event.preventDefault();
-    // setUser({email : email, password: password});
-    axios.post(apiUrl, 
-      {
-        email: email,
-        password: password
-      },
-      {
-        headers:{"Content-Type": "application/json", 'Access-Control-Allow-Origin': '*'}
-        
-      })
-      .then((response) => {
-        setData(response.data);
-        
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error)
-        console.error('Error saat mengambil data:', error);
-      });
-  }
   return (<>
   <div className="position-relative" style={{height:"100vh", width:"100vw"}}>
       <img src={bg} className='w-100 h-100 position-absolute' style={{zIndex:"-1"}}/>
