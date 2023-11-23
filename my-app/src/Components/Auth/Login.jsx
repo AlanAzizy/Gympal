@@ -30,8 +30,7 @@ export default function Login({state}) {
       })
       .then((response) => {
 
-        console.log(jwtDecode(response.data.token).exp)
-        Cookies.setItem('token',response.data.token, { expires: (jwtDecode(response.data.token).exp) });
+        Cookies.setItem('token',response.data.token, { expires: new Date(jwtDecode(response.data.token).exp) });
       })
       .catch((error) => {
         console.log(error)

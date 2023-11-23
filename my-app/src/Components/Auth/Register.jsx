@@ -35,7 +35,6 @@ export default function Register({state}) {
         
       })
       .then((response) => { 
-        console.log(response.data);
         Cookies.setItem('token',response.data.token, { expires: new Date(jwtDecode(response.data.token).exp) });
       })
       .catch((error) => {
