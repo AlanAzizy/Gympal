@@ -75,9 +75,9 @@ export default function Register({state}) {
               <label  className="form-label py-1">Password</label>
               <input onChange={(event)=> setPassword(event.target.value)} type="password" className="form-control border-1" id="exampleFormControlInput1" placeholder="input tour password" value={password} style={{height:"7%"}}/>
               <label  className="form-label py-1">Alamat</label>
-              <input onChange={(event)=> setAlamat(event.target.value)} type="text" className="form-control border-1" id="exampleFormControlInput1" placeholder="name@example.com" value={alamat} style={{height:"7%"}}/>
+              <input onChange={(event)=> setAlamat(event.target.value)} type="text" className="form-control border-1" id="exampleFormControlInput1" placeholder="Di mana alamat anda" value={alamat} style={{height:"7%"}}/>
               <label  className="form-label py-1">No Telepon</label>
-              <input onChange={(event)=> setNoTelepon(event.target.value)} type="text" className="form-control border-1" id="exampleFormControlInput1" placeholder="name@example.com" value={noTelepon} style={{height:"7%"}}/>
+              <input onChange={(event)=> setNoTelepon(event.target.value)} type="text" className="form-control border-1" id="exampleFormControlInput1" placeholder="08xxxxxx" value={noTelepon} style={{height:"7%"}}/>
               <button type="submit" className='position-absolute w-75 rounded-pill py-1 text-white' style={{bottom:"9%",marginLeft:"9%",height:"8%",backgroundImage:"linear-gradient(#29C4F4, #113D76)",border:"none"}}>REGISTER</button>
               <div className='position-absolute w-100' style={{bottom:"4%"}}>
                   <h5 className='fs-6 text-center' style={{textDecoration:"none"}}>Already sign up?<a href="#" onClick={componentHandler}>Login here</a></h5>
