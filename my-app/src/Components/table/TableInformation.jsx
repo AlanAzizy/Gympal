@@ -8,10 +8,10 @@ function TableInformation({nama,email,expdate}) {
   const navigate = useNavigate();
 
   console.log(expdate);
-  if (!expdate){
+  if (expdate===undefined){
     expdate = new Date();
   }
-
+  console.log(expdate);
   function logoutHandler(){
     Cookies.removeItem('token');
     localStorage.removeItem('pengguna');
@@ -55,7 +55,7 @@ function TableInformation({nama,email,expdate}) {
             <tr>
               <td className="p-2">Expired Date</td>
               <td className="p-2">:</td>
-              <td className="p-2">{expdate.toLocaleDateString("en-US",{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</td>
+              <td className="p-2">{new Date(expdate).toLocaleDateString("en-US",{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</td>
             </tr>
           </tbody>
         </table>
