@@ -1,10 +1,10 @@
 import React from "react";
 import TableInformation from "../Components/table/TableInformation";
 import CardClassHistory from "../Components/card/CardClassHistory";
-function Profile() {
+function Profile({nama,email,expdate}) {
   return (
     <>
-      <TableInformation />
+      <TableInformation nama={nama} email={email} expdate={expdate}/>
       <CardClassHistory />
     </>
   );
