@@ -4,6 +4,7 @@ import Login from '../Components/Auth/Login';
 import Register from '../Components/Auth/Register';
 import bg from '../Assets/login-bg.jpg';
 import logo from '../Assets/logo.png';
+import { useNavigate } from 'react-router';
 
 
 export default function Auth() {
