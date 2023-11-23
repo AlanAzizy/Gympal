@@ -6,7 +6,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Class from "./Pages/Class";
 // import Purchases from "./Pages/Purchases";
 import Auth from "./Pages/Auth";
-
+import Profile from "./Pages/Profile";
+// import Class from "./Pages/Class";
+// import Purchases from "./Pages/Purchases";
 
 function App() {
   return (
@@ -19,6 +21,10 @@ function App() {
           <Route path="/class" element={<Class />} />
           {/* <Route path="/purchases" element={<Purchases />} /> */}
           <Route path="/" element={<Auth />} />
+          <Route path="/profile" element={<Profile />} />
+          {/* <Route path="/payment" element={<Payment />} />
+          <Route path="/class" element={<Class />} />
+          <Route path="/purchases" element={<Purchases />} /> */}
         </Routes>
       </BrowserRouter>
     </>
