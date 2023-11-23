@@ -1,7 +1,7 @@
 import React from "react";
 import JohnDoe from "../../Assets/john-doe.jpg"
 
-function TableInformation() {
+function TableInformation({nama,email,expdate}) {
   return (
     <>
       <div className="container ">
@@ -23,22 +23,22 @@ function TableInformation() {
             <tr>
               <td className="p-2">Name</td>
               <td className="p-2">:</td>
-              <td className="p-2">Hanna Anisa</td>
+              <td className="p-2">{nama}</td>
             </tr>
             <tr>
               <td className="p-2">Email</td>
               <td className="p-2">:</td>
-              <td className="p-2">hana_fathiyah@gmail.com</td>
+              <td className="p-2">{email}</td>
             </tr>
             <tr>
               <td className="p-2">Membership</td>
               <td className="p-2">:</td>
-              <td className="p-2">Pro</td>
+              <td className="p-2">{new Date()>expdate ? "Regular" : "Pro" }</td>
             </tr>
             <tr>
               <td className="p-2">Expired Date</td>
               <td className="p-2">:</td>
-              <td className="p-2">29 December 2023</td>
+              <td className="p-2">{expdate.toLocaleDateString("en-US",{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</td>
             </tr>
           </tbody>
         </table>
