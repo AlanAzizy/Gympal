@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import axios from 'axios'
 import Cookies from 'js-cookies';
 import {jwtDecode} from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Register({state}) {
@@ -12,6 +13,7 @@ export default function Register({state}) {
   const [alamat, setAlamat] = useState('');
   const [noTelepon, setNoTelepon] = useState('');
   const [valid, setValid] = useState(true);
+  const navigete = useNavigate();
   
   // Menggunakan Axios untuk melakukan permintaan GET ke API
   const componentHandler = () => {
