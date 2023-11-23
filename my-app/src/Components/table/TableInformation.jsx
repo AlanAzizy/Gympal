@@ -1,7 +1,23 @@
 import React from "react";
 import JohnDoe from "../../Assets/john-doe.jpg"
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookies'
 
 function TableInformation({nama,email,expdate}) {
+
+  const navigate = useNavigate();
+
+  console.log(expdate);
+  if (!expdate){
+    expdate = new Date();
+  }
+
+  function logoutHandler(){
+    Cookies.removeItem('token');
+    localStorage.removeItem('pengguna');
+    navigate('/');
+  }
+  
   return (
     <>
       <div className="container ">
@@ -13,6 +29,7 @@ function TableInformation({nama,email,expdate}) {
             type="button"
             className=" border-0 px-5 rounded-4  text-light"
             style={{ background: "#952212" }}
+            onClick={logoutHandler}
           >
             Logout
           </button>
@@ -33,7 +50,7 @@ function TableInformation({nama,email,expdate}) {
             <tr>
               <td className="p-2">Membership</td>
               <td className="p-2">:</td>
-              <td className="p-2">{new Date()>expdate ? "Regular" : "Pro" }</td>
+              <td className="p-2">{new Date()>new Date(expdate) ? "Regular" : "Pro" }</td>
             </tr>
             <tr>
               <td className="p-2">Expired Date</td>

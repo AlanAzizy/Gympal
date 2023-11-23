@@ -39,6 +39,7 @@ export default function Login({state}) {
           // For example, set tokens or user data in local storage or state
   
           // After successful login, navigate to the desired page
+          localStorage.setItem('pengguna', JSON.stringify(response.data.pengguna));
           navigate('/profile'); // Replace '/dashboard' with your desired route
         } else {
           // Handle unsuccessful login
