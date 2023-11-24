@@ -3,14 +3,26 @@ import { Navbar } from "../Components/navbar/Navbar";
 import { ArrowLeft } from "react-iconly";
 import { ModalQR } from "../Components/modals/ModalQR";
 import { useState } from "react";
+import { useLocation } from 'react-router-dom';
 
 function Payment() {
+
+  const [method, setMethod] = useState('');
+
+  const location = useLocation();
+  console.log(location);
+  const {months, payYear} = location.state.data;
+
   const gradientBackgroundStyle = {
     background: "linear-gradient(to bottom, #4F6780, #777777)",
     height: "100vh",
   };
 
   const [showModal, setShowModal] = useState(false);
+
+  const handleSelectedMethod = (event) => {
+    setMethod(event.target.value);
+  }
   const handlePayNow = () => {
     setShowModal(true);
   };
@@ -41,18 +53,18 @@ function Payment() {
                 <tr>
                   <td className="p-2">Duration</td>
                   <td className="p-2">:</td>
-                  <td className="p-2 ">6 months</td>
+                  <td className="p-2 ">{months} Months</td>
                 </tr>
                 <tr>
                   <td className="p-2">Price</td>
                   <td className="p-2">:</td>
-                  <td className="p-2">Rp 2.100.000</td>
+                  <td className="p-2">{payYear}</td>
                 </tr>
                 <tr>
                   <td className="p-2">Payment method</td>
                   <td className="p-2">:</td>
                   <td className="p-2">
-                    <select className="form-select" style={{ width: "35%" }}>
+                    <select className="form-select" style={{ width: "35%" }} onChange={handleSelectedMethod}>
                       <option value="">select one payment method</option>
                       <option value={"Ovo"}>Ovo</option>
                       <option value={"BCA"}>BCA</option>
@@ -72,7 +84,7 @@ function Payment() {
           >
             pay now
           </button>
-          <ModalQR show={showModal} close={handleClose} />
+          <ModalQR show={showModal} close={handleClose} data={{months, payYear, method}}/>
         </div>
       </div>
     </>
