@@ -82,7 +82,7 @@ export default function Navbar() {
                   </ul>
                 </div>
               </li>
-              <Link to="/class" className="nav-link text-light">
+              <Link to="/profile" className="nav-link text-light">
                 <Setting />
               </Link>
             </div>

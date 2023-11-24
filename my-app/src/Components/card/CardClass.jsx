@@ -3,12 +3,16 @@ import { ClassData } from "./cardDummy";
 import JohnDoe from "../../Assests/john-doe.jpg";
 import axios from 'axios';
 import Cookies from 'js-cookies';
+import MendaftarKelas from "../PopupKelas/MendaftarKelas"
 
 function CardClass() {
 
   const apiUrl = 'http://localhost:3001/kelas/kelasBelumDilakukan'
   const [data, setData] = useState(null);
   const [isLoading, setIsloading] = useState(true);
+  const [hasDaftar, setHasDaftar] = useState(false);
+  const [message, setMessage] = useState('');
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,23 +32,35 @@ function CardClass() {
   }, []);
   
 
-  const addClass = (id) => {
+  const addClass =  async (id) => {
     const token = Cookies.getItem('jwt');
     console.log((token));
-    axios.put("http://localhost:3001/kelas/mendaftarKelas", {_id : id}, {
-      headers: {
-          'cookies' : token,
-          'Access-Control-Allow-Origin': '*', 
-          'Content-Type': 'application/json'
-      }
-  } )
-    .then((response) => { console.log(response)})
-    .catch((error)=>{console.log(error)});
+    try{
+      const response = await axios.put("http://localhost:3001/kelas/mendaftarKelas", {_id : id}, {
+        headers: {
+            'cookies' : token,
+            'Access-Control-Allow-Origin': '*', 
+            'Content-Type': 'application/json'
+        }
+    } )
+    if (response.status==201 || response.status==209){ 
+      console.log(response.data.message);
+      console.log(1);
+      setHasDaftar(true);
+      setMessage(response.data.message);
+    }
+    }catch(err){
+      console.log(err)
+    }
   }
 
+  const hasDaftarHandler = () =>{
+    setHasDaftar(false);
+  }
 
   return (
     <>
+      {hasDaftar && <MendaftarKelas message={message} close={hasDaftarHandler}/>}
       <div className="row row-cols-1 row-cols-md-3 gap-4 mx-auto py-3 container">
         {!isLoading && data.map((data, id) => (
           <div
@@ -59,12 +75,12 @@ function CardClass() {
                   <tr>
                     <td className="p-2">Nama</td>
                     <td className="p-2">:</td>
-                    <td className="p-2 fw-bold">{data.nama}</td>
+                    <td className="p-2 fw-bold">{data.namaKelas}</td>
                   </tr>
                   <tr>
                     <td className="p-2">Date</td>
                     <td className="p-2">:</td>
-                    <td className="p-2">{data.tanggal}</td>
+                    <td className="p-2">{new Date(data.tanggal).toLocaleString()}</td>
                   </tr>
                   <tr>
                     <td className="p-2">Duration</td>
@@ -74,7 +90,7 @@ function CardClass() {
                   <tr>
                     <td className="p-2">Instructor</td>
                     <td className="p-2">:</td>
-                    <td className="p-2">{data.durasi}</td>
+                    <td className="p-2">{data.instruktur}</td>
                   </tr>
                 </tbody>
               </table>

@@ -13,7 +13,7 @@ function TableInformation({nama,email,expdate}) {
   }
   console.log(expdate);
   function logoutHandler(){
-    Cookies.removeItem('token');
+    Cookies.removeItem('jwt');
     localStorage.removeItem('pengguna');
     navigate('/');
   }
