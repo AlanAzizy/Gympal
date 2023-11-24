@@ -5,7 +5,6 @@ import Auth from "./Pages/Auth";
 // import Profile from "./Pages/Profile";
 import Class from "./Pages/Class";
 // import Purchases from "./Pages/Purchases";
-import Auth from "./Pages/Auth";
 import Profile from "./Pages/Profile";
 // import Class from "./Pages/Class";
 // import Purchases from "./Pages/Purchases";

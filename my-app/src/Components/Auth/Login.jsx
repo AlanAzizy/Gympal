@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function Login({state}) {
-  const apiUrl = 'https://gympalv1.ambitiousmoss-bd081c95.australiaeast.azurecontainerapps.io/auth/login';
+  const apiUrl = 'http://localhost:3001/auth/login';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [user, setUser] = useState({});
@@ -32,7 +32,7 @@ export default function Login({state}) {
           
         });
         console.log(jwtDecode(response.data.token).exp)
-        Cookies.setItem('token',response.data.token, { expires: (jwtDecode(response.data.token).exp) });
+        Cookies.setItem('jwt',(response.data.token), { expires: (jwtDecode(response.data.token).exp) });
         console.log(response);
         if (response.status === 201) {
           // Perform actions for successful login
