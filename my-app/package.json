@@ -6,14 +6,13 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "js-cookies": "^1.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-iconly": "^2.2.10",
+    "react-icons": "^4.12.0",
     "react-router-dom": "^6.20.0",
-<<<<<<< HEAD
-=======
     "react-script": "^2.0.5",
->>>>>>> 276ea3e6668db6eed5afe0f75d909c2709a38480
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },

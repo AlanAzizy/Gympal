@@ -1,7 +1,8 @@
 import React from "react";
 import DragAndDrop from "../inputs/DragAndDrop";
+import Cookies from 'js-cookies'
 
-export function ModalUpload({ show, close }) {
+export function ModalUpload({ show, close, data }) {
   const modalStyle = {
     display: show ? "block" : "none",
   };
@@ -11,6 +12,32 @@ export function ModalUpload({ show, close }) {
     backdropFilter: show ? "blur(10px)" : "none",
     transition: "backdrop-filter 0.3s ease-out",
   };
+
+  
+
+  const handleSend = async () => {
+    try{
+      const response = await axios.post("http://localhost:3001/pembayaran/createPembayaran", {
+        "metode" : data.method,
+        "months" : data.months,
+        "bukti_pembayaran" : "ini dia"
+      },{
+        headers : {
+          cookies : Cookies.getItem('jwt')
+        }
+      })
+
+      if (response==201){
+        close()
+      }
+
+    }catch(error){
+      console.log(error);
+      alert('gagal melakukan pembayaran');
+      close();
+    }
+    }
+
   return (
     <>
       <div
@@ -47,7 +74,7 @@ export function ModalUpload({ show, close }) {
                   type="button"
                   className="btn fw-bold"
                   style={{ background: "#92A492" }}
-                  onClick={close}
+                  onClick={handleSend}
                 >
                   Send
                 </button>

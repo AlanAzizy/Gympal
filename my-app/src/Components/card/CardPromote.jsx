@@ -21,7 +21,7 @@ function CardPromote() {
               <p className="card-text ">Free classes every day</p>
               <h4 className="card-subtitle mb-2 text-light">
                 Rp. {data.payYear}{" "}
-                <span style={{ fontSize: "14px" }}> /month</span>
+                <span style={{ fontSize: "14px" }}> /Year</span>
               </h4>
               <div className="wrapper p-3">
                 <p
@@ -47,12 +47,13 @@ function CardPromote() {
                   </h4>
                 </div>
               </div>
-              <Link to="/payment" className="btn btn-success w-100 text-uppercase fw-bold text-black rounded-5">
+              
+              {data && <Link key={id} to="/payment" state={{data}} className="btn btn-success w-100 text-uppercase fw-bold text-black rounded-5">
                 purchases now
-              </Link>
+              </Link>}
             </div>
           </div>
-        ))}
+))}
       </div>
     </>
   );

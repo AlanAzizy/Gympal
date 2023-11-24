@@ -3,7 +3,7 @@ import Qr from "../../Assets/qr.png"
 import ModalUpload from "./ModalUpload";
 import { useState } from "react";
 
-export function ModalQR({ show, close }) {
+export function ModalQR({ show, close,data }) {
   const modalStyle = {
     display: show ? "block" : "none",
   };
@@ -71,7 +71,7 @@ export function ModalQR({ show, close }) {
           </div>
         </div>
       </div>
-      <ModalUpload show={showFile} close={handleClose} />
+      <ModalUpload show={showFile} close={handleClose} data={data}/>
     </>
   );
 }
