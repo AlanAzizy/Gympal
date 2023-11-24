@@ -10,6 +10,10 @@
     "react-dom": "^18.2.0",
     "react-iconly": "^2.2.10",
     "react-router-dom": "^6.20.0",
+<<<<<<< HEAD
+=======
+    "react-script": "^2.0.5",
+>>>>>>> 276ea3e6668db6eed5afe0f75d909c2709a38480
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
