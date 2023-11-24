@@ -8,6 +8,7 @@ import Class from "./Pages/Class";
 import Profile from "./Pages/Profile";
 // import Home from "./Pages/Home";
 import Payment from "./Pages/Payment";
+import Purchases from "./Pages/Purchases";
 // import Profile from "./Pages/Profile";
 // import Class from "./Pages/Class";
 // import Purchases from "./Pages/Purchases";
@@ -29,8 +30,8 @@ function App() {
           {/* <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} /> */}
           <Route path="/payment" element={<Payment />} />
-          {/* <Route path="/class" element={<Class />} />
-          <Route path="/purchases" element={<Purchases />} /> */}
+          {/* <Route path="/class" element={<Class />} >*/}
+          <Route path="/purchases" element={<Purchases />} /> 
         </Routes>
       </BrowserRouter>
     </>
