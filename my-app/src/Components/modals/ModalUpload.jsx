@@ -1,6 +1,7 @@
 import React from "react";
 import DragAndDrop from "../inputs/DragAndDrop";
 import Cookies from 'js-cookies'
+import axios from "axios";
 
 export function ModalUpload({ show, close, data }) {
   const modalStyle = {

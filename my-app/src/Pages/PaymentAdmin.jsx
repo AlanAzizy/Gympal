@@ -1,9 +1,10 @@
 // Payment.jsx
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { FaHome, FaUser, FaCreditCard, FaCog } from "react-icons/fa";
 import Table from "../Components/payment/RowTable";
 import { Link, useNavigate } from "react-router-dom";
-import Sidebar from "../Components/payment/Sidebar"
+import Sidebar from "../Components/payment/Sidebar";
+import axios from "axios";
 
 const dummydata = [
   {
@@ -33,9 +34,35 @@ const dummydata = [
 ];
 
 const Membership = () => {
+
+  const apiUrl = 'http://localhost:3001/kelolaAnggota/getAllDataAnggota'
+  const [data, setData] = useState(null);
+  const [isLoading, setIsloading] = useState(true);
+  const [hasDaftar, setHasDaftar] = useState(false);
+  const [message, setMessage] = useState('');
+
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(apiUrl);
+        console.log(response.data);
+        setData(response.data);
+        setIsloading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        // Handle error or set error state
+      } finally {
+        setIsloading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
+
+
   const [isPaymentHovered, setPaymentHovered] = useState(false);
   const [isSidebarMinimized, setSidebarMinimized] = useState(false);
-  const realData = useState([]);
   const navigate = useNavigate();
 
   const handlePaymentHover = () => {
@@ -101,15 +128,8 @@ const Membership = () => {
       {/* Content */}
       <div style={contentStyle}>
         <h1 style={welcomeStyle}>Membership</h1>
-        <Table datas={dummydata}/>
+        <Table datas={data} isLoading={isLoading}/>
         {/* Add more content as needed */}
-        <button
-          type="button"
-          className="btn btn-success mx-auto"
-          style={{ width: "40%", borderRadius: "94.5px", marginTop: "20px" }}
-        >
-          SAVE
-        </button>
       </div>
     </div>
   );
