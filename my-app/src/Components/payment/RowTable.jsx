@@ -1,0 +1,120 @@
+import React, { useState } from "react";
+
+const Notification = (NotifValue) => {
+  const [NotificationValue, setNotification] = useState(NotifValue);
+  const handleClick = () => {
+    setNotification(!NotificationValue);
+  };
+  const iconStyle = {
+    cursor: "pointer",
+  };
+
+  return (
+    <td className="col-2" onClick={handleClick} >
+      {NotificationValue ? (
+          <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width="16" height="16" 
+          fill="currentColor" 
+          viewBox="0 0 16 16"
+          >
+            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6"
+            />
+          </svg>
+      ) : (
+          <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width="16" height="16" 
+          fill="currentColor" 
+          viewBox="0 0 16 16"
+          >
+            <path 
+            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"
+            />
+          </svg>
+      )}
+    </td>
+  );
+}
+const Verif = (verifValue) => {
+  const [verificationValue, setVerification] = useState(verifValue);
+  const handleClick = () => {
+    setVerification(!verificationValue);
+  };
+  const iconStyle = {
+    cursor: "pointer",
+  };
+
+  return (
+    <td className="col-1" onClick={handleClick} >
+      {verificationValue ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+            style={iconStyle}
+          >
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664z" />
+          </svg>
+      ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+            style={iconStyle}
+          >
+            <path
+              fillRule="evenodd"
+              d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"
+            />
+            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+          </svg>
+      )}
+    </td>
+  );
+}
+
+const Table = ({datas}) => {
+  const iconStyle = {
+    cursor: "pointer",
+  };
+
+  return (
+    <table style={{
+      background: "#000000",
+      opacity: "70%",
+      color: "white",
+      borderRadius: "20px",
+      width:"90%"
+    }}>
+<thead>
+      <tr className="row w-100 ms-0" style={{ paddingTop: "15px", paddingBottom: "15px", paddingRight: "0px" }}>
+        <th className="col-1">No</th>
+        <th className="col-2">ID</th>
+        <th className="col-4">Name</th>
+        <th className="col-1">Member</th>
+        <th className="col-2">EXP</th>
+        <th className="col-2">Notification</th>
+      </tr>
+    </thead>
+    <tbody style={{ borderRadius: "20px" }}>
+      {datas.map((data, index) => (
+        <tr key={index} className="row ms-0" style={{ paddingTop: "10px", paddingBottom: "10px" }}>
+          <td className="col-1">{data.no}</td>
+          <td className="col-2">{data.id}</td>
+          <td className="col-4">{data.nama}</td>
+          {/* Assuming Verif and Notification are components */}
+          <Verif verifValue={data.verification} />
+          <td className="col-2">{data.expdate}</td>
+          <Notification NotifValue={data.payment} />
+        </tr>
+      ))}
+    </tbody>
+  </table>
+)};
+
+export default Table;

@@ -21,7 +21,6 @@ export default function Navbar() {
   return (
     <>
       <nav className="navbar navbar-expand-lg p-3 bg-transparent">
-        
         <div className="container-fluid">
           <div
             className="collapse navbar-collapse justify-content-end"

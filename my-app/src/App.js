@@ -6,8 +6,13 @@ import Auth from "./Pages/Auth";
 import Class from "./Pages/Class";
 // import Purchases from "./Pages/Purchases";
 import Profile from "./Pages/Profile";
+// import Home from "./Pages/Home";
+import Payment from "./Pages/Payment";
+import Purchases from "./Pages/Purchases";
+// import Profile from "./Pages/Profile";
 // import Class from "./Pages/Class";
 // import Purchases from "./Pages/Purchases";
+import PaymentAdmin from "./Pages/PaymentAdmin";
 
 function App() {
   return (
@@ -23,7 +28,12 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           {/* <Route path="/payment" element={<Payment />} />
           <Route path="/class" element={<Class />} />
-          <Route path="/purchases" element={<Purchases />} /> */}
+          {/* <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} /> */}
+          <Route path="/payment" element={<Payment />} />
+          {/* <Route path="/class" element={<Class />} >*/}
+          <Route path="/purchases" element={<Purchases />} /> 
+          <Route path="/admin" element={<PaymentAdmin/>}/>
         </Routes>
       </BrowserRouter>
     </>
