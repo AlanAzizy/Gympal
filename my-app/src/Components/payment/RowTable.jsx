@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Cookies from 'js-cookies';
+import axios from "axios";
 
 const Notification = (NotifValue) => {
   const [NotificationValue, setNotification] = useState(NotifValue);
@@ -36,17 +38,43 @@ const Notification = (NotifValue) => {
     </td>
   );
 }
-const Verif = (verifValue) => {
+const Verif = ({verifValue, id}) => {
   const [verificationValue, setVerification] = useState(verifValue);
-  const handleClick = () => {
+  const handleClick = (event) => {
+    
     setVerification(!verificationValue);
+    if (verificationValue){
+      handleChange(id,'setAnggotaActive');
+    }else{
+      console.log(id);
+      handleChange(id,'setAnggotaNonActive');
+    }
   };
   const iconStyle = {
     cursor: "pointer",
   };
 
+  const handleChange= async (id, toActive)=> {
+
+    const token = Cookies.getItem('jwt');
+    try{
+      const response = await axios.put(`http://localhost:3001/kelolaAnggota/${toActive}/${id}`, {
+        headers: {
+            'cookies' : token,
+            'Access-Control-Allow-Origin': '*', 
+            'Content-Type': 'application/json'
+        }
+    } )
+    if (response.status==200 || response.status==209){ 
+      console.log(response.data);
+    }
+    }catch(err){
+      console.log(err)
+    }
+  }
+
   return (
-    <td className="col-1" onClick={handleClick} >
+    <td className="col-2" onClick={handleClick} >
       {verificationValue ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -78,11 +106,14 @@ const Verif = (verifValue) => {
   );
 }
 
-const Table = ({datas}) => {
+const Table = ({datas,isLoading}) => {
+
+
   const iconStyle = {
     cursor: "pointer",
   };
-
+  console.log(datas);
+  console.log(isLoading);
   return (
     <table style={{
       background: "#000000",
@@ -94,25 +125,24 @@ const Table = ({datas}) => {
 <thead>
       <tr className="row w-100 ms-0" style={{ paddingTop: "15px", paddingBottom: "15px", paddingRight: "0px" }}>
         <th className="col-1">No</th>
-        <th className="col-2">ID</th>
+        <th className="col-3">ID</th>
         <th className="col-4">Name</th>
-        <th className="col-1">Member</th>
-        <th className="col-2">EXP</th>
+        <th className="col-2">Member</th>
         <th className="col-2">Notification</th>
       </tr>
     </thead>
     <tbody style={{ borderRadius: "20px" }}>
-      {datas.map((data, index) => (
-        <tr key={index} className="row ms-0" style={{ paddingTop: "10px", paddingBottom: "10px" }}>
-          <td className="col-1">{data.no}</td>
-          <td className="col-2">{data.id}</td>
+      {!isLoading && datas.map((data, index) => (
+        <tr key={data.id} className="row ms-0" style={{ paddingTop: "10px", paddingBottom: "10px" }}>
+          <td className="col-1">{index+1}</td>
+          <td className="col-3">{data.id}</td>
           <td className="col-4">{data.nama}</td>
           {/* Assuming Verif and Notification are components */}
-          <Verif verifValue={data.verification} />
-          <td className="col-2">{data.expdate}</td>
-          <Notification NotifValue={data.payment} />
+          <Verif verifValue={data.statusKeanggotaan} id={data.id} />
+          <Notification NotifValue={false} />
         </tr>
-      ))}
+      )
+      )}
     </tbody>
   </table>
 )};

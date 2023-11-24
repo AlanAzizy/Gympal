@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Navbar } from "../Components/navbar/Navbar";
+import Navbar from "../Components/navbar/Navbar";
 import { ArrowLeft } from "react-iconly";
 import { ModalQR } from "../Components/modals/ModalQR";
 import { useState } from "react";
