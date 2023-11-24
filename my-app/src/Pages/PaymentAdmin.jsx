@@ -81,7 +81,6 @@ const Membership = () => {
     background:
       "linear-gradient(180deg, #113D76 0%, rgba(217, 217, 217, 0.00) 100%)",
     height: "100vh",
-    display: "flex",
     fontFamily: "poppins",
   };
 
@@ -122,15 +121,16 @@ const Membership = () => {
   };
 
   return (
-    <div style={gradientStyle}>
+    <div style={gradientStyle} className="d-flex ">
       {/* Sidebar */}
-      <Sidebar />
-      {/* Content */}
-      <div style={contentStyle}>
+      <div className="col-1 h-100"></div>
+      <div style={contentStyle} className="col-11">
         <h1 style={welcomeStyle}>Membership</h1>
         <Table datas={data} isLoading={isLoading}/>
         {/* Add more content as needed */}
       </div>
+      <Sidebar />
+      {/* Content */}
     </div>
   );
 };

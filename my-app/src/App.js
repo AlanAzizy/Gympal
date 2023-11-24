@@ -15,6 +15,8 @@ import Purchases from "./Pages/Purchases";
 // import Purchases from "./Pages/Purchases";
 import PaymentAdmin from "./Pages/PaymentAdmin";
 import ProtectedRoute from "./Pages/ProtectedRoute";
+import DaftarKelas from "./Pages/DaftarKelas";
+import EditKelas from "./Pages/EditKelas";
 
 
 
@@ -41,7 +43,9 @@ function App() {
           <Route path="/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
           {/* <Route path="/class" element={<Class />} >*/}
           <Route path="/purchases" element={<ProtectedRoute><Purchases /></ProtectedRoute>} /> 
-          {<Route path="/admin" element={<ProtectedRoute>{role=='admin' ? <PaymentAdmin/> : <Profile/>}</ProtectedRoute>}/>}
+          {<Route path="/adminmembership" element={<ProtectedRoute>{role=='admin' ? <PaymentAdmin/> : <Profile/>}</ProtectedRoute>}/>}
+          {<Route path="/adminkelas" element={<ProtectedRoute>{role=='admin' ? <DaftarKelas/> : <Profile/>}</ProtectedRoute>}/>}
+          {<Route path="/admineditkelas" element={<ProtectedRoute>{role=='admin' ? <EditKelas/> : <Profile/>}</ProtectedRoute>}/>}
         </Routes>
       </BrowserRouter>
     </>

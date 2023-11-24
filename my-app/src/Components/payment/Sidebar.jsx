@@ -48,6 +48,9 @@ const Sidebar = () => {
     cursor: "pointer",  // Add right margin to FaHome icon
   };
   const sidebarStyle = {
+    position : "fixed",
+    left : "0px",
+    top : "50px",
     width: "fit-content",
     display: "flex",
     padding: "68px 40px 0px 0px",
