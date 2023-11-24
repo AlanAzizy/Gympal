@@ -21,13 +21,14 @@ export default function Navbar() {
   return (
     <>
       <nav className="navbar navbar-expand-lg p-3 bg-transparent">
+        
         <div className="container-fluid">
           <div
             className="collapse navbar-collapse justify-content-end"
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav w-25 justify-content-evenly align-items-center">
-              <Link to="/" className={`nav-link ${isTabActive("profile") ? "active fw-bold" : ""} text-light`}>
+              <Link to="/profile" className={`nav-link ${isTabActive("profile") ? "active fw-bold" : ""} text-light`}>
                 Profile
               </Link>
               <Link to="/class" className={`nav-link ${isTabActive("class") ? "active fw-bold" : ""} text-light`}>
@@ -81,7 +82,7 @@ export default function Navbar() {
                   </ul>
                 </div>
               </li>
-              <Link to="/class" className="nav-link text-light">
+              <Link to="/profile" className="nav-link text-light">
                 <Setting />
               </Link>
             </div>

@@ -1,8 +1,11 @@
 import React from "react";
 import { ClassHistoryData } from "./cardDummy";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 function CardClassHistory() {
+  const navigate = useNavigate();
   const data = ClassHistoryData;
 
   return (
@@ -11,7 +14,7 @@ function CardClassHistory() {
         <div className="d-flex justify-content-between align-items-center">
           <h2 className="fw-bold">Class History</h2>
           <div className="button-group d-flex gap-3 ">
-            <button className="btn" style={{ background: "#92A492", fontWeight:"900" }}>
+            <button onClick={()=>navigate('/class')} className="btn" style={{ background: "#92A492", fontWeight:"900" }}>
               Join Class
             </button>
             <Link to="/purchases" className="btn" style={{ background: "#92A492", fontWeight:"900" }}>
