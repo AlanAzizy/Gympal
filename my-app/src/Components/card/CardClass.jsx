@@ -44,8 +44,6 @@ function CardClass() {
         }
     } )
     if (response.status==201 || response.status==209){ 
-      console.log(response.data.message);
-      console.log(1);
       setHasDaftar(true);
       setMessage(response.data.message);
     }

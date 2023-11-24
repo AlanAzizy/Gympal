@@ -2,7 +2,7 @@ import React from "react";
 import img1 from "../Assets/image 141.png";
 import img2 from "../Assets/gympal5 1.png";
 import CardPromote from "./../Components/card/CardPromote";
-import { Navbar } from "../Components/navbar/Navbar";
+import Navbar from "../Components/navbar/Navbar";
 
 function Purchases() {
   const gradientBackgroundStyle = {
