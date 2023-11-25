@@ -2,23 +2,17 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Auth from "./Pages/Auth";
-// import Payment from "./Pages/Payment";
-// import Profile from "./Pages/Profile";
 import Class from "./Pages/Class";
-// import Purchases from "./Pages/Purchases";
 import Profile from "./Pages/Profile";
-// import Home from "./Pages/Home";
 import Payment from "./Pages/Payment";
 import PaymentAdmin2 from "./Pages/PaymentAdmin2";
 import Purchases from "./Pages/Purchases";
-// import Profile from "./Pages/Profile";
-// import Class from "./Pages/Class";
-// import Purchases from "./Pages/Purchases";
 import PaymentAdmin from "./Pages/PaymentAdmin";
 import ProtectedRoute from "./Pages/ProtectedRoute";
 import DaftarKelas from "./Pages/DaftarKelas";
 import EditKelas from "./Pages/EditKelas";
 import AddKelas from "./Pages/AddKelas";
+import Home from "./Components/Home";
 
 
 
@@ -50,6 +44,7 @@ function App() {
           {<Route path="/adminkelas" element={<ProtectedRoute>{role=='admin' ? <DaftarKelas/> : <Profile/>}</ProtectedRoute>}/>}
           {<Route path="/admineditkelas" element={<ProtectedRoute>{role=='admin' ? <EditKelas/> : <Profile/>}</ProtectedRoute>}/>}
           {<Route path="/adminaddkelas" element={<ProtectedRoute>{role=='admin' ? <AddKelas/> : <Profile/>}</ProtectedRoute>}/>}
+          {<Route path="/adminhome" element={<ProtectedRoute>{role=='admin' ? <Home/> : <Profile/>}</ProtectedRoute>}/>}
         </Routes>
       </BrowserRouter>
     </>

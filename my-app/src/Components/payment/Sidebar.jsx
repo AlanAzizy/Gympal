@@ -57,7 +57,8 @@ const Sidebar = () => {
     flexDirection: "column",
     alignItems: "center",
     gap: "20px",
-    color: "white"
+    color: "white",
+    zIndex : "1"
   };
   const iconStyle = {
     cursor: "pointer",
@@ -65,11 +66,11 @@ const Sidebar = () => {
   return (
     <>
       <div style={sidebarStyle}>
-        <FaHome size={50} onClick={() => navigate("/")} style={faHomeStyle} />
+        <FaHome size={50} onClick={() => navigate("/adminhome")} style={faHomeStyle} />
         <div style={groupSidebar}>
-          <FaUser size={40} onClick={() => navigate("/daftarkelas")} style={iconStyle} />
-          <FaCreditCard size={40} onClick={() => navigate("/payment2")} style={iconStyle} />
-          <FaPeopleGroup size={40} onClick={() => navigate("/payment")} style={iconStyle} />
+          <FaUser size={40} onClick={() => navigate("/adminkelas")} style={iconStyle} />
+          <FaCreditCard size={40} onClick={() => navigate("/adminpayment")} style={iconStyle} />
+          <FaPeopleGroup size={40} onClick={() => navigate("/adminmembership")} style={iconStyle} />
         </div>
       </div>
     </>

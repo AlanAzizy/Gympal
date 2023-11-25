@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from "react";
 import { ClassData } from "./cardDummy";
-import JohnDoe from "../../Assests/john-doe.jpg";
+import JohnDoe from "../../Assets/gympal5 1.png";
 import axios from 'axios';
 import Cookies from 'js-cookies';
 import MendaftarKelas from "../PopupKelas/MendaftarKelas"
