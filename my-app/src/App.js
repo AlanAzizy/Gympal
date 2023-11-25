@@ -24,20 +24,10 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
-          {/* <Route path="/profile" element={<Profile />} />
-          <Route path="/payment" element={<Payment />} /> */}
-
           <Route path="/class" element={<ProtectedRoute ><Class /></ProtectedRoute>} />
-          {/* <Route path="/purchases" element={<Purchases />} /> */}
           <Route path="/" element={<Auth />} />
           <Route path="/profile" element={<ProtectedRoute ><Profile /></ProtectedRoute>} />
-          {/* <Route path="/payment" element={<Payment />} />
-          <Route path="/class" element={<Class />} />
-          {/* <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} /> */}
           <Route path="/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
-          {/* <Route path="/class" element={<Class />} >*/}
           <Route path="/purchases" element={<ProtectedRoute><Purchases /></ProtectedRoute>} /> 
           {<Route path="/adminmembership" element={<ProtectedRoute>{role=='admin' ? <PaymentAdmin/> : <Profile/>}</ProtectedRoute>}/>}
           {<Route path="/adminpayment" element={<ProtectedRoute>{role=='admin' ? <PaymentAdmin2/> : <Profile/>}</ProtectedRoute>}/>}
