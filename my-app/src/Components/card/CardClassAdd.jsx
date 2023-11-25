@@ -6,18 +6,15 @@ import Cookies from 'js-cookies';
 import MendaftarKelas from "../PopupKelas/MendaftarKelas"
 import { useLocation, useNavigate } from "react-router";
 
-function CardClassEdit() {
+function CardClassAdd() {
     
 
   const [namaKelas, setNamaKelas] = useState('');
   const [tanggal, setTanggal] = useState(new Date());
   const [durasi, setDurasi] = useState(0);
   const [instruktur, setInstruktur] = useState('');
-  const location = useLocation();
-  console.log(location.state);
-  const receivedData = location.state.data;
-  const kelas_id = receivedData._id;
-  const detail = receivedData.detail;
+  const [detail, setDetail] = useState('');
+
 
   const navigate = useNavigate();
 
@@ -31,32 +28,14 @@ function CardClassEdit() {
   
 
 
-  useEffect(() => {
-    console.log(receivedData);
-    const fetchData = () => {
-      try {
-        setNamaKelas(receivedData.namaKelas);
-        setDurasi(receivedData.durasi);
-        setTanggal(formatDateToYYYYMMDD(new Date(receivedData.tanggal)));
-        setInstruktur(receivedData.instruktur);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        // Handle error or set error state
-      }
-    };
-    
-    fetchData();
-  }, []);
-
-
   const saveData = async () => {
     try {
-      const response = await axios.put("http://localhost:3001/kelas/updateKelas", {
-        kelas_id,
+      const response = await axios.post("http://localhost:3001/kelas/addNewKelas", {
         namaKelas,
         tanggal,
         durasi,
-        detail
+        detail,
+        instruktur
       })
       if (response.status===201){
         console.log(response.data.message);
@@ -73,26 +52,6 @@ function CardClassEdit() {
     }
   }
 
-
-  const deleteData = async () => {
-    console.log(kelas_id);
-    try {
-      const response = await axios.delete(`http://localhost:3001/kelas/removeKelas/${kelas_id}`
-      )
-      if (response.status===201){
-        console.log(response.data.message);
-        navigate("/adminkelas")
-      }
-      if (response.status===209){
-        console.log(response.data.message);
-      }
-      if (response.status===210){
-        console.log(response.data.message);
-      }
-    }catch(error){
-      console.log(error);
-    }
-  }
   
 
   return (
@@ -125,16 +84,21 @@ function CardClassEdit() {
                     <td className="p-2">:</td>
                     <td className="p-2"><input type="text" onChange={(event)=>setInstruktur(event.target.value)} value={instruktur}></input></td>
                   </tr>
+                  <tr>
+                    <td className="p-2">Detail</td>
+                    <td className="p-2">:</td>
+                    <td className="p-2"><input type="text" onChange={(event)=>setDetail(event.target.value)} value={detail}></input></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
             <div className="row d-flex justify-content-evenly">
-              <button onClick={()=>saveData()} className=" col-5 btn btn-success text-light rounded-5">SAVE</button>
-              <button onClick={()=>deleteData()} className="col-5 btn btn-danger text-light rounded-5">DELETE</button>
+              <button onClick={()=>navigate("/adminkelas")} className="col-5 btn btn-danger text-light rounded-5">CANCEL</button>
+              <button onClick={()=>saveData()} className=" col-5 btn btn-success text-light rounded-5">ADD</button>
             </div>
           </div>
     </>
   );
 }
 
-export default CardClassEdit;
+export default CardClassAdd;

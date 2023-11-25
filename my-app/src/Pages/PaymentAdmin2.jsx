@@ -1,10 +1,11 @@
 // Payment.jsx
 import React, { useState,useEffect } from "react";
 import { FaHome, FaUser, FaCreditCard, FaCog } from "react-icons/fa";
-import Table from "../Components/payment/RowTable";
+import RowTable2 from "../Components/payment/RowTable2"
 import { Link, useNavigate } from "react-router-dom";
 import Sidebar from "../Components/payment/Sidebar";
 import axios from "axios";
+import Cookies from "js-cookies";
 
 const dummydata = [
   {
@@ -33,9 +34,9 @@ const dummydata = [
   },
 ];
 
-const Membership = () => {
+const Pembayaran = () => {
 
-  const apiUrl = 'http://localhost:3001/kelolaAnggota/getAllDataAnggota'
+  const apiUrl = 'http://localhost:3001/pembayaran/getAllPembayaran'
   const [data, setData] = useState(null);
   const [isLoading, setIsloading] = useState(true);
   const [hasDaftar, setHasDaftar] = useState(false);
@@ -45,10 +46,17 @@ const Membership = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(apiUrl);
-        console.log(response.data);
-        setData(response.data);
-        setIsloading(false);
+        const token = Cookies.getItem('jwt');
+        const response = await axios.get(apiUrl, {
+          headers: {
+              'cookies' : token,
+              'Access-Control-Allow-Origin': '*', 
+              'Content-Type': 'application/json'
+          }
+      });
+      console.log(response.data.data);
+          setData(response.data.data);
+          setIsloading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
         // Handle error or set error state
@@ -140,8 +148,8 @@ const Membership = () => {
       {/* Sidebar */}
       <div className="col-1 h-100"></div>
       <div style={contentStyle} className="col-11">
-        <h1 style={welcomeStyle}>Membership</h1>
-        <Table datas={data} isLoading={isLoading} fetchData={fetchDatafromChild}/>
+        <h1 style={welcomeStyle}>Payment Verification</h1>
+        <RowTable2 datas={data} isLoading={isLoading} fetchData={fetchDatafromChild}/>
         {/* Add more content as needed */}
       </div>
       <Sidebar />
@@ -150,4 +158,4 @@ const Membership = () => {
   );
 };
 
-export default Membership;
+export default Pembayaran;

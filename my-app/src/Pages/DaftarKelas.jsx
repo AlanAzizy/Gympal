@@ -6,6 +6,7 @@ import CardClassSingle from "../Components/card/CardClassSingle";
 import Navbar from "../Components/navbar/Navbar";
 import axios from "axios";
 import Cookies from "js-cookies"
+import { useNavigate } from "react-router-dom";
 
 
 const PaymentOptions = () => {
@@ -129,6 +130,7 @@ const DaftarKelas = () => {
     setHasDaftar(false);
   }
 
+  const navigate = useNavigate();
   return (
     <div style={gradientStyle}>
       {/* Sidebar */}
@@ -136,7 +138,7 @@ const DaftarKelas = () => {
       <div className="d-flex w-100 justify-content-end row" style={{height:"100px"}}>
         <div className="col-7"></div>
         <h3 className="my-auto col-2 text-white text-end">Add Kelas</h3>
-        <button className="custom-button col-1 bg-transparent ps-0" style={{
+        <button  onClick={()=>navigate("/adminaddkelas")} className="custom-button col-1 bg-transparent ps-0" style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",

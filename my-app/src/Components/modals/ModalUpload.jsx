@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import DragAndDrop from "../inputs/DragAndDrop";
 import Cookies from 'js-cookies'
 import axios from "axios";
+import MendaftarKelas from "../PopupKelas/MendaftarKelas";
 
-export function ModalUpload({ show, close, data }) {
+export function ModalUpload({ show, close, data, toShow, message }) {
   const modalStyle = {
     display: show ? "block" : "none",
   };
@@ -20,27 +21,31 @@ export function ModalUpload({ show, close, data }) {
     try{
       const response = await axios.post("http://localhost:3001/pembayaran/createPembayaran", {
         "metode" : data.method,
-        "months" : data.months,
-        "bukti_pembayaran" : "ini dia"
+        "bulan" : data.months,
+        "buktiPembayaran" : "ini dia"
       },{
         headers : {
           cookies : Cookies.getItem('jwt')
         }
       })
 
-      if (response==201){
-        close()
+      if (response.status==200){
+        close();
+        message("Pembayaran berhasil");
+      }else{
+        message("Pembayaran Gagal");
       }
-
+      toShow()
     }catch(error){
       console.log(error);
-      alert('gagal melakukan pembayaran');
       close();
     }
     }
 
+
   return (
     <>
+      
       <div
         className={`modal-backdrop fade ${show ? "show" : ""}`}
         style={backdropBlur}

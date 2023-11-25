@@ -4,10 +4,13 @@ import { ArrowLeft } from "react-iconly";
 import { ModalQR } from "../Components/modals/ModalQR";
 import { useState } from "react";
 import { useLocation } from 'react-router-dom';
+import MendaftarKelas from "../Components/PopupKelas/MendaftarKelas";
 
 function Payment() {
 
   const [method, setMethod] = useState('');
+  const [isShowed, setIsShowed] = useState(false);
+  const [message, setMessage] = useState('');
 
   const location = useLocation();
   console.log(location);
@@ -17,6 +20,10 @@ function Payment() {
     background: "linear-gradient(to bottom, #4F6780, #777777)",
     height: "100vh",
   };
+
+  const toShow = () => {
+    setIsShowed(true);
+  }
 
   const [showModal, setShowModal] = useState(false);
 
@@ -29,10 +36,15 @@ function Payment() {
   const handleClose = () => {
     setShowModal(false);
   };
+
+  const handleClosePopup = () => {
+    setIsShowed(false);
+  }
   return (
     <>
       <div className="wrapper" style={gradientBackgroundStyle}>
         <Navbar />
+        {isShowed && <MendaftarKelas message={message} close={handleClosePopup}/>}
         <div className="container d-flex flex-column gap-4">
           <Link
             to="/purchases"
@@ -84,7 +96,7 @@ function Payment() {
           >
             pay now
           </button>
-          <ModalQR show={showModal} close={handleClose} data={{months, payYear, method}}/>
+          <ModalQR show={showModal} close={handleClose} data={{months, payYear, method}} message={setMessage} toShow={toShow}/>
         </div>
       </div>
     </>

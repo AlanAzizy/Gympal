@@ -38,17 +38,23 @@ const Notification = (NotifValue) => {
     </td>
   );
 }
-const Verif = ({verifValue, id}) => {
-  const [verificationValue, setVerification] = useState(verifValue);
+const Verif = ({verifValue, id, fetchData}) => {
+  let vValue = false;
+  if (verifValue){
+    vValue = true;
+  }
+  const [verificationValue, setVerificationValue] = useState(vValue);
+  
   const handleClick = (event) => {
-    
-    setVerification(!verificationValue);
-    if (verificationValue){
-      handleChange(id,'setAnggotaActive');
+    if (vValue){
+      handleChange(id,'setAnggotaNonActive');
+      setVerificationValue(false)
     }else{
       console.log(id);
-      handleChange(id,'setAnggotaNonActive');
+      handleChange(id,'setAnggotaActive');
+      setVerificationValue(true)
     }
+    fetchData();
   };
   const iconStyle = {
     cursor: "pointer",
@@ -58,7 +64,9 @@ const Verif = ({verifValue, id}) => {
 
     const token = Cookies.getItem('jwt');
     try{
-      const response = await axios.put(`http://localhost:3001/kelolaAnggota/${toActive}/${id}`, {
+      const response = await axios.put(`http://localhost:3001/kelolaAnggota/${toActive}/${id}`, { params: {
+        "idAnggota" : id
+      },
         headers: {
             'cookies' : token,
             'Access-Control-Allow-Origin': '*', 
@@ -66,6 +74,7 @@ const Verif = ({verifValue, id}) => {
         }
     } )
     if (response.status==200 || response.status==209){ 
+      console.log(toActive);
       console.log(response.data);
     }
     }catch(err){
@@ -75,18 +84,8 @@ const Verif = ({verifValue, id}) => {
 
   return (
     <td className="col-2" onClick={handleClick} >
-      {verificationValue ? (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="24"
-            fill="currentColor"
-            viewBox="0 0 16 16"
-            style={iconStyle}
-          >
-            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664z" />
-          </svg>
-      ) : (
+      {verificationValue ? 
+          
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -100,13 +99,31 @@ const Verif = ({verifValue, id}) => {
               d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"
             />
             <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+          </svg> : <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+            style={iconStyle}
+          >
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664z" />
           </svg>
-      )}
+       
+      }
     </td>
   );
 }
 
-const Table = ({datas,isLoading}) => {
+function formatDateToYYYYMMDD(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Adding 1 to month because it's zero-indexed
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${day}-${month}-${year}`;
+}
+
+const Table = ({datas,isLoading, fetchData}) => {
 
 
   const iconStyle = {
@@ -126,8 +143,9 @@ const Table = ({datas,isLoading}) => {
       <tr className="row w-100 ms-0" style={{ paddingTop: "15px", paddingBottom: "15px", paddingRight: "0px" }}>
         <th className="col-1">No</th>
         <th className="col-3">ID</th>
-        <th className="col-4">Name</th>
+        <th className="col-2">Name</th>
         <th className="col-2">Member</th>
+        <th className="col-2">Expdate</th>
         <th className="col-2">Notification</th>
       </tr>
     </thead>
@@ -136,9 +154,10 @@ const Table = ({datas,isLoading}) => {
         <tr key={data.id} className="row ms-0" style={{ paddingTop: "10px", paddingBottom: "10px" }}>
           <td className="col-1">{index+1}</td>
           <td className="col-3">{data.id}</td>
-          <td className="col-4">{data.nama}</td>
+          <td className="col-2">{data.nama}</td>
           {/* Assuming Verif and Notification are components */}
-          <Verif verifValue={data.statusKeanggotaan} id={data.id} />
+          <Verif verifValue={data.statusKeanggotaan} id={data.id} fetchData={fetchData}/>
+          <th className="col-2">{formatDateToYYYYMMDD(new Date(data.expdate))}</th>
           <Notification NotifValue={false} />
         </tr>
       )

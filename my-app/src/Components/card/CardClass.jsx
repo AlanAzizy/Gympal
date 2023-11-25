@@ -43,10 +43,10 @@ function CardClass() {
             'Content-Type': 'application/json'
         }
     } )
-    if (response.status==201 || response.status==209){ 
+    // if (response.status==201 || response.status==209){ 
       setHasDaftar(true);
-      setMessage(response.data.message);
-    }
+    // }
+    setMessage(response.data.message);
     }catch(err){
       console.log(err)
     }
