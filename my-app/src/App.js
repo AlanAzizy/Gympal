@@ -20,7 +20,7 @@ import ProtectedRoute from "./Pages/ProtectedRoute";
 
 function App() {
 
-  const role = JSON.parse(localStorage.getItem('pengguna')).role
+  const role = localStorage.getItem('pengguna') ? JSON.parse(localStorage.getItem('pengguna')).role : 'user';
 
   return (
     <>

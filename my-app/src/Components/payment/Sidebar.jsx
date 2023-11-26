@@ -54,7 +54,8 @@ const Sidebar = () => {
     flexDirection: "column",
     alignItems: "center",
     gap: "20px",
-    color: "white"
+    color: "white",
+    position: "fixed",
   };
   const iconStyle = {
     cursor: "pointer",
