@@ -100,11 +100,7 @@ const Membership = () => {
   };
 
   const sidebarWidth = isSidebarMinimized ? "90px" : "250px";
-  const sidebarToggleButton = isSidebarMinimized ? (
-    <button onClick={toggleSidebar}>+</button>
-  ) : (
-    <button onClick={toggleSidebar}>-</button>
-  );
+
 
   const sidebarStyle = {
     width: sidebarWidth,

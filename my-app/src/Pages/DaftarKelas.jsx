@@ -3,6 +3,7 @@ import { FaHome, FaUser, FaCreditCard, FaCog } from "react-icons/fa";
 import Sidebar from "../Components/payment/Sidebar";
 import CardClass from "../Components/card/CardClass";
 import CardClassSingle from "../Components/card/CardClassSingle";
+import StatusPopup from "../Components/status/StatusPopup";
 import Navbar from "../Components/navbar/Navbar";
 import axios from "axios";
 import Cookies from "js-cookies"
@@ -41,7 +42,8 @@ const DaftarKelas = () => {
       "linear-gradient(180deg, #113D76 0%, rgba(217, 217, 217, 0.00) 100%)",
     height: "screen",
     overflow: "auto",
-    width : "100vw"
+    width : "100vw",
+    fontFamily: "Poppins",
   };
 
   const sidebarWidth = isSidebarMinimized ? "90px" : "250px";
@@ -68,24 +70,28 @@ const DaftarKelas = () => {
     alignItems: "center",
     overflow:"auto",
     justifyContent: "center",
+
   };
 
   const welcomeStyle = {
     color: "#ffffff",
     fontFamily: "Inter-Bold, Helvetica",
-    fontSize: "128px",
+    fontSize: "60px",
     fontWeight: 700,
     letterSpacing: 0,
     lineHeight: "normal",
     textAlign: "center",
     textDecoration: "underline",
+    paddingTop:"20px"
   };
 
   const apiUrl = 'http://localhost:3001/kelas/allKelas'
   const [data, setData] = useState(null);
   const [isLoading, setIsloading] = useState(true);
-  const [hasDaftar, setHasDaftar] = useState(false);
-  const [message, setMessage] = useState('');
+  const [showStatusPopup, setShowStatusPopup] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
+  // const [hasDaftar, setHasDaftar] = useState(false);
+  // const [message, setMessage] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -117,17 +123,23 @@ const DaftarKelas = () => {
             'Content-Type': 'application/json'
         }
     } )
-    if (response.status==201 || response.status==209){ 
-      setHasDaftar(true);
-      setMessage(response.data.message);
+    if (response.status === 201 || response.status === 209) {
+      console.log("Class added successfully!");
+      setStatusMessage("Class added");
+      setShowStatusPopup(true);
+
+      // Log the values
+      console.log("statusMessage:", statusMessage);
+      console.log("showStatusPopup:", showStatusPopup);
     }
     }catch(err){
       console.log(err)
     }
   }
 
-  const hasDaftarHandler = () =>{
-    setHasDaftar(false);
+  const hasDaftarHandler = () => {
+    // Hide the pop-up when handling the 'hasDaftar' state
+    setShowStatusPopup(false);
   }
 
   const navigate = useNavigate();
@@ -136,6 +148,7 @@ const DaftarKelas = () => {
       {/* Sidebar */}
       <Sidebar />
       <div className="d-flex w-100 justify-content-end row" style={{height:"100px"}}>
+        <h1 style={welcomeStyle}>Daftar Kelas</h1>
         <div className="col-7"></div>
         <h3 className="my-auto col-2 text-white text-end">Add Kelas</h3>
         <button  onClick={()=>navigate("/adminaddkelas")} className="custom-button col-1 bg-transparent ps-0" style={{
@@ -143,8 +156,10 @@ const DaftarKelas = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 border: "none",
-                padding: "2px",
-                boxShadow: "none" /* Remove box shadow */
+                padding: "0px 0px 0px 0px",
+                marginRight:"0",
+                boxShadow: "none", /* Remove box shadow */
+                marginBottom:"10px",
               }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -162,12 +177,14 @@ const DaftarKelas = () => {
             />
           </svg>
         </button>
-        <div className="col-2"></div>
+        <div className="col-1"></div>
       </div>
       {/* Content */}
-      <div className="d-flex flex-wrap gap-2 mx-auto" style={{width:"90vw"}}>
-        {!isLoading && data.map((el)=>(<CardClassSingle data={el}/>))}
+      <div className="d-flex flex-wrap gap-2 mx-auto" style={{width:"90vw", paddingTop:"50px"}}>
+        {!isLoading && data.map((el)=>(<CardClassSingle data={el} addClass={addClass}/>))}
       </div>
+      {/* Render the StatusPopup component */}
+        {showStatusPopup && <StatusPopup message={statusMessage} onClose={() => setShowStatusPopup(false)} />}
       </div>
 
   );

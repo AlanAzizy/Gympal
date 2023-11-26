@@ -110,8 +110,16 @@ const TablePayment = ({datas,isLoading, fetchData}) => {
       </tr>
     </thead>
     <tbody style={{ borderRadius: "20px" }}>
-      {!isLoading && datas.map((data, index) => (
-        <tr key={data.id} className="row ms-0" style={{ paddingTop: "10px", paddingBottom: "10px" }}>
+        {!isLoading &&
+          datas &&
+          datas.map((data, index) => (
+            <tr
+              key={data.id}
+              className="row ms-0"
+              style={{
+                paddingTop: "10px",
+                paddingBottom: "10px",
+              }}>
           <td className="col-1">{index+1}</td>
           <td className="col-3">{data.idPembayaran}</td>
           <td className="col-4">{data.nama}</td>

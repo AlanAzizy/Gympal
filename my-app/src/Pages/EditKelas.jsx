@@ -9,10 +9,24 @@ const gradientStyle = {
     height: "screen",
     overflow: "auto",
     width : "100vw",
-    height : "100vh"
+    height : "100vh",
+    fontFamily:"poppins"
   };
 
-
+  const welcomeStyle = {
+    color: "#ffffff",
+    fontFamily: "Inter-Bold, Helvetica",
+    fontSize: "72px",
+    fontWeight: 700,
+    letterSpacing: 0,
+    lineHeight: "normal",
+    textAlign: "left",
+    textDecoration: "underline",
+    alignSelf: "self-start",
+    justifySelf: "self-start",
+    margin: "20px",
+  };
+  
 export default function EditKelas(){
 
     const navigate = useNavigate();
@@ -21,11 +35,11 @@ export default function EditKelas(){
         <>
         <div className="d-flex flex-column align-items-center py-auto justify-content-center position-relative" style={gradientStyle}>
           <div className="btn btn-danger mx-auto position-absolute w-25" style={{bottom:"30px"}} onClick={()=>navigate("/adminkelas")}>
-              cancel
+              Cancel
           </div>
             {/* Sidebar */}
             <Sidebar />
-            <h1>Edit Kelas</h1>
+            <h1 style={welcomeStyle}>Edit Kelas</h1>
             <CardClassEdit />
         </div>
         </>

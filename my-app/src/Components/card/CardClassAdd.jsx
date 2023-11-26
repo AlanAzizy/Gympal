@@ -1,6 +1,9 @@
 import React, { useEffect,useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { ClassData } from "./cardDummy";
 import JohnDoe from "../../Assets/gympal5 1.png";
+import StatusPopup from "../status/StatusPopup";
 import axios from 'axios';
 import Cookies from 'js-cookies';
 import MendaftarKelas from "../PopupKelas/MendaftarKelas"
@@ -14,7 +17,7 @@ function CardClassAdd() {
   const [durasi, setDurasi] = useState(0);
   const [instruktur, setInstruktur] = useState('');
   const [detail, setDetail] = useState('');
-
+  const [showPopup, setShowPopup] = useState(false);
 
   const navigate = useNavigate();
 
@@ -39,6 +42,10 @@ function CardClassAdd() {
       })
       if (response.status===201){
         console.log(response.data.message);
+        setShowPopup(true);
+        toast.success('Class added successfully!', {
+          position: toast.POSITION.TOP_RIGHT,
+        });
         navigate("/adminkelas")
       }
       if (response.status===209){
@@ -58,7 +65,7 @@ function CardClassAdd() {
     <>
           <div
             className="card p-3 rounded-5 w-25 mx-auto"
-            style={{ background: "#1c232b" }}
+            style={{ background: "#1c232b", fontFamily: "Poppins" }}
           >
             <img src={JohnDoe} className="card-img-top rounded-4" alt="..." />
             <div className="card-body">
@@ -94,9 +101,10 @@ function CardClassAdd() {
             </div>
             <div className="row d-flex justify-content-evenly">
               <button onClick={()=>navigate("/adminkelas")} className="col-5 btn btn-danger text-light rounded-5">CANCEL</button>
-              <button onClick={()=>saveData()} className=" col-5 btn btn-success text-light rounded-5">ADD</button>
+              <button onClick={() => {saveData(); alert('Class Added!');}} className="col-5 btn btn-success text-light rounded-5">ADD</button>
             </div>
           </div>
+          <ToastContainer />
     </>
   );
 }
