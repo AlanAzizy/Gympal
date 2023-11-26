@@ -20,11 +20,11 @@ const gradientStyle = {
     fontWeight: 700,
     letterSpacing: 0,
     lineHeight: "normal",
-    textAlign: "left",
     textDecoration: "underline",
     alignSelf: "self-start",
-    justifySelf: "self-start",
+    justifySelf: "self-center",
     margin: "20px",
+    textAlign: "center",
   };
   
 export default function EditKelas(){
