@@ -40,7 +40,11 @@ export default function Login({state}) {
   
           // After successful login, navigate to the desired page
           localStorage.setItem('pengguna', JSON.stringify(response.data.pengguna));
-          navigate('/profile'); // Replace '/dashboard' with your desired route
+          if (response.data.pengguna.role=="admin"){
+            navigate('/adminhome')
+          }else{
+            navigate('/profile'); // Replace '/dashboard' with your desired route
+          }
         } else {
           // Handle unsuccessful login
           console.log('Login failed');
