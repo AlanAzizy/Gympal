@@ -19,7 +19,6 @@ import ClassList from "./Pages/ClassList";
 
 function App() {
 
-  let role = localStorage.getItem('pengguna') ? JSON.parse(localStorage.getItem('pengguna')).role : 'user';
   return (
     <>
       <BrowserRouter>

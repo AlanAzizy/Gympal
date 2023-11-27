@@ -51,7 +51,7 @@ function TableInformation({nama,email,expdate}) {
             <tr>
               <td className="p-2">Membership</td>
               <td className="p-2">:</td>
-              <td className="p-2">{new Date()>new Date(expdate) ? "Regular" : "Pro" }</td>
+              <td className="p-2">{new Date().setDate(new Date().getDate()+1)>new Date(expdate) ? "Regular" : "Pro" }</td>
             </tr>
             <tr>
               <td className="p-2">Expired Date</td>

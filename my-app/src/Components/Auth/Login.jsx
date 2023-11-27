@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function Login({state}) {
-  const apiUrl = 'https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/auth/login';
+  const apiUrl = 'http://localhost:3001/auth/login';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [user, setUser] = useState({});
@@ -41,6 +41,7 @@ export default function Login({state}) {
   
           // After successful login, navigate to the desired page
           localStorage.setItem('pengguna', JSON.stringify(response.data.pengguna));
+          console.log(response.data.pengguna)
           if (response.data.pengguna.role=="admin"){
             setTimeout(navigate('/adminhome'),500);
           }else{

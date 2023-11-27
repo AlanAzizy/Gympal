@@ -185,7 +185,7 @@ const DaftarKelas = () => {
             stroke="black"
           />
         </svg></div>
-          : data.map((el) => (<CardClassSingle data={el} addClass={addClass} />))}
+          : data.map((el) => (<CardClassSingle data={el} />))}
       </div>
       {/* Render the StatusPopup component */}
       {showStatusPopup && <StatusPopup message={statusMessage} onClose={() => setShowStatusPopup(false)} />}
