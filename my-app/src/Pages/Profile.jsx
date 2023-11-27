@@ -11,6 +11,7 @@ function Profile() {
   return (
     <>
       <div style={{background: 'linear-gradient(to bottom, #3D6EA2, #FEFEFE)'}}>
+        <Navbar />
         <TableInformation nama={nama} email={email} expdate={expdate}/>
         <CardClassHistory />
       </div>

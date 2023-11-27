@@ -90,9 +90,9 @@ const Sidebar = () => {
         </div>
         <FaHome size={50}  onClick={() => handleIconClick('home', "/adminhome")} style={activeIcon === 'home' ? {...faHomeStyle, color: "black"} : faHomeStyle} />
         <div style={groupSidebar}>
-          <FaUser size={40} onClick={() => handleIconClick('user', "/adminkelas")} style={activeIcon === 'user' ? {...FaUser, color: "black"} : FaUser} />
-          <FaCreditCard size={40} onClick={() => handleIconClick('payment', "/adminpayment")} style={activeIcon === 'payment' ? {...FaCreditCard, color: "black"} : FaCreditCard} />
-          <FaPeopleGroup size={40} onClick={() => handleIconClick('membership', "/adminmembership")} style={activeIcon === 'membership' ? {...FaPeopleGroup, color: "black"} : FaPeopleGroup} />  
+          <FaUser size={40} onClick={() => handleIconClick('user', "/adminkelas")} style={activeIcon === 'user' ? {...FaUser, color: "black"} : iconStyle} />
+          <FaCreditCard size={40} onClick={() => handleIconClick('payment', "/adminpayment")} style={activeIcon === 'payment' ? {...FaCreditCard, color: "black"} : iconStyle} />
+          <FaPeopleGroup size={40} onClick={() => handleIconClick('membership', "/adminmembership")} style={activeIcon === 'membership' ? {...FaPeopleGroup, color: "black"} : iconStyle} />  
         </div>
         </div>
       </div>

@@ -77,7 +77,7 @@ function Payment() {
                   <td className="p-2">
                     <select className="form-select" style={{ width: "35%" }} onChange={handleSelectedMethod}>
                       <option value="">select one payment method</option>
-                      <option value={"Ovo"}>Ovo</option>
+                      <option value={"OVO"}>OVO</option>
                       <option value={"BCA"}>BCA</option>
                       <option value={"American Express"}>
                         American Express

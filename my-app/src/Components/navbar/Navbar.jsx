@@ -14,7 +14,7 @@ export default function Navbar() {
       setActiveTab("class");
     }else if(path==="/profile") {
       setActiveTab("profile");
-    }else{
+    }else if(path==="/myclass") {
       setActiveTab("myclass");
     }
   }, [location.pathname]);

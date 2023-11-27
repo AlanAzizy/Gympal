@@ -1,6 +1,9 @@
 import React, { useEffect,useState } from "react";
 import { ClassData } from "./cardDummy";
 import JohnDoe from "../../Assets/gympal5 1.png";
+import zumba from "../../Assets/zumba2.jpg";
+import yoga from "../../Assets/yoga.jpg";
+import question from "../../Assets/qmark.png";
 import axios from 'axios';
 import Cookies from 'js-cookies';
 import MendaftarKelas from "../PopupKelas/MendaftarKelas"
@@ -24,7 +27,10 @@ function CardClass() {
           'Content-Type': 'application/json'
       }
       });
-      setData(response.data.kelas);
+      console.log(response.data.kelas)
+      const getData = response.data.kelas.filter((kelas)=>(kelas!=null));
+      console.log(getData);
+      setData(getData);
       setIsloading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -74,13 +80,21 @@ function CardClass() {
             stroke="white"
           />
         </svg></div>
-          : data.map((data, id) => (
+          :data && data.map((data, id) => (
           <div
             className="card p-3 rounded-5 w-25 mx-auto"
             style={{ background: "#1c232b" }}
             key={id}
           >
-            <img src={JohnDoe} className="card-img-top rounded-4" alt="..." />
+            {data.namaKelas === "pilletes" || data.namaKelas === "pilletes" ? (
+              <img src={JohnDoe} className="card-img-top rounded-4" alt="..." />
+            ) : data.namaKelas === "zumba" || data.namaKelas === "Zumba" ? (
+              <img src={zumba} className="card-img-top rounded-4" alt="..." />
+            ) : data.namaKelas === "yoga" || data.namaKelas === "Yoga" ? (
+              <img src={yoga} className="card-img-top rounded-4" alt="..." />
+            ) : (
+              <img src={question} className="card-img-top rounded-4" alt="..." />
+            )}
             <div className="card-body">
               <table>
                 <tbody className="text-light">
