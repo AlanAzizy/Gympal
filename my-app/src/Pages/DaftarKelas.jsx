@@ -44,6 +44,7 @@ const DaftarKelas = () => {
     overflow: "auto",
     width : "100vw",
     fontFamily: "Poppins",
+    paddingBottom: "20px"
   };
 
   const sidebarWidth = isSidebarMinimized ? "90px" : "250px";
@@ -180,8 +181,8 @@ const DaftarKelas = () => {
         <div className="col-1"></div>
       </div>
       {/* Content */}
-      <div className="d-flex flex-wrap gap-2 mx-auto" style={{width:"90vw", paddingTop:"50px"}}>
-        {!isLoading && data.map((el)=>(<CardClassSingle data={el} addClass={addClass}/>))}
+      <div className="d-flex flex-wrap gap-2 mx-auto" style={{width:"90vw", paddingTop:"50px", paddingBottom:"2px", marginBottom:"0px"}}>
+        {!isLoading && data.map((el)=>(<CardClassSingle data={el} addClass={addClass} />))}
       </div>
       {/* Render the StatusPopup component */}
         {showStatusPopup && <StatusPopup message={statusMessage} onClose={() => setShowStatusPopup(false)} />}

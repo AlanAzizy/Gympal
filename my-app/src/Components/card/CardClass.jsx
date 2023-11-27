@@ -59,7 +59,9 @@ function CardClass() {
   return (
     <>
       {hasDaftar && <MendaftarKelas message={message} close={hasDaftarHandler}/>}
-      <div className="row row-cols-1 row-cols-md-3 gap-4 mx-auto py-3 container">
+      <div className="row row-cols-1 row-cols-md-3 gap-4 mx-auto py-3 container"
+      style={{ background: "#1c232b", fontFamily: "Poppins" , paddingBottom: "20px"  }}
+      >
         {!isLoading && data.map((data, id) => (
           <div
             className="card p-3 rounded-5 w-25 mx-auto"

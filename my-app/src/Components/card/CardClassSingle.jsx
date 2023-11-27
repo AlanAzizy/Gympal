@@ -12,7 +12,7 @@ function CardClassSingle({data}) {
     <>
           <div
             className="card p-3 rounded-5 w-25 mx-auto"
-            style={{ background: "#1c232b", fontFamily: "Poppins"  }}
+            style={{ background: "#1c232b", fontFamily: "Poppins" , paddingBottom: "20px", marginBottom:"15px"  }}
           >
             <img src={JohnDoe} className="card-img-top rounded-4" alt="..." />
             <div className="card-body">
