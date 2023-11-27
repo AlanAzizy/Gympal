@@ -64,7 +64,7 @@ const Verif = ({verifValue, id, fetchData}) => {
 
     const token = Cookies.getItem('jwt');
     try{
-      const response = await axios.put(`https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelolaAnggota/${toActive}/${id}`, { params: {
+      const response = await axios.put(`https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelolaAnggota/${toActive}/${id}`, { params: {
         "idAnggota" : id
       },
         headers: {

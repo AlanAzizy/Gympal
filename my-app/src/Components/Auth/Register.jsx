@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function Register({state, toLogin}) {
-  const apiUrl = 'https://gympalv1.ambitiousmoss-bd081c95.australiaeast.azurecontainerapps.io/auth/signup';
+  const apiUrl = 'https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/auth/signup';
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');
   const [username, setUserName] = useState('');
@@ -35,7 +35,11 @@ export default function Register({state, toLogin}) {
           noTelepon : noTelepon
         },
         {
-          headers:{"Content-Type": "application/json"}
+          headers: {
+            'cookies' : token,
+            'Access-Control-Allow-Origin': '*', 
+            'Content-Type': 'application/json'
+        }
           
         });
         if (response.status === 201) {

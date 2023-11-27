@@ -10,7 +10,7 @@ import "../../App.css"
 
 function CardClass() {
 
-  const apiUrl = 'https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/kelasBelumDilakukan'
+  const apiUrl = 'https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/kelasBelumDilakukan'
   const [data, setData] = useState(null);
   const [isLoading, setIsloading] = useState(true);
   const [hasDaftar, setHasDaftar] = useState(false);
@@ -19,7 +19,13 @@ function CardClass() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(apiUrl);
+        const response = await axios.get(apiUrl, {
+          headers: {
+            'cookies' : token,
+            'Access-Control-Allow-Origin': '*', 
+            'Content-Type': 'application/json'
+        }
+        });
         setData(response.data.kelas_filtered);
         setIsloading(false);
       } catch (error) {
@@ -37,7 +43,7 @@ function CardClass() {
   const addClass =  async (id) => {
     const token = Cookies.getItem('jwt');
     try{
-      const response = await axios.put("https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/mendaftarKelas", {_id : id}, {
+      const response = await axios.put("https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/mendaftarKelas", {_id : id}, {
         headers: {
             'cookies' : token,
             'Access-Control-Allow-Origin': '*', 

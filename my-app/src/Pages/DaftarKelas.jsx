@@ -87,7 +87,7 @@ const DaftarKelas = () => {
     paddingTop: "20px"
   };
 
-  const apiUrl = 'https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/allKelas'
+  const apiUrl = 'https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/allKelas'
   const [data, setData] = useState(null);
   const [isLoading, setIsloading] = useState(true);
   const [showStatusPopup, setShowStatusPopup] = useState(false);
@@ -98,7 +98,14 @@ const DaftarKelas = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(apiUrl);
+        const response = await axios.get(apiUrl,
+          {
+            headers: {
+              'cookies': token,
+              'Access-Control-Allow-Origin': '*',
+              'Content-Type': 'application/json'
+            }
+          });
         setData(response.data.kelas);
         setIsloading(false);
       } catch (error) {
@@ -116,7 +123,7 @@ const DaftarKelas = () => {
   const addClass = async (id) => {
     const token = Cookies.getItem('jwt');
     try {
-      const response = await axios.put("https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/mendaftarKelas", { _id: id }, {
+      const response = await axios.put("https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/mendaftarKelas", { _id: id }, {
         headers: {
           'cookies': token,
           'Access-Control-Allow-Origin': '*',

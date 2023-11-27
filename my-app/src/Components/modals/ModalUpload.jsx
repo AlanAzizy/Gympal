@@ -19,14 +19,16 @@ export function ModalUpload({ show, close, data, toShow, message }) {
 
   const handleSend = async () => {
     try{
-      const response = await axios.post("https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/pembayaran/createPembayaran", {
+      const response = await axios.post("https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/pembayaran/createPembayaran", {
         "metode" : data.method,
         "bulan" : data.months,
         "buktiPembayaran" : "ini dia"
       },{
-        headers : {
-          cookies : Cookies.getItem('jwt')
-        }
+        headers: {
+          'cookies' : token,
+          'Access-Control-Allow-Origin': '*', 
+          'Content-Type': 'application/json'
+      }
       })
 
       if (response.status==200){

@@ -49,7 +49,7 @@ const Verif = ({verifValue, id, fetchData, idPembayaran}) => {
     const token = Cookies.getItem('jwt');
     try{
       const response = await axios.put(
-        `https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/pembayaran/${toActive}/${idAnggota}/${idPembayaran}`,{},
+        `https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/pembayaran/${toActive}/${idAnggota}/${idPembayaran}`,{},
         {
           headers: {
             'cookies' : token,

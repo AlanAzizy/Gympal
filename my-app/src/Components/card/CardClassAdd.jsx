@@ -33,12 +33,18 @@ function CardClassAdd() {
 
   const saveData = async () => {
     try {
-      const response = await axios.post("https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/addNewKelas", {
+      const response = await axios.post("https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/addNewKelas", {
         namaKelas,
         tanggal,
         durasi,
         detail,
         instruktur
+      }, {
+        headers: {
+          'cookies' : token,
+          'Access-Control-Allow-Origin': '*', 
+          'Content-Type': 'application/json'
+      }
       })
       if (response.status===201){
         setShowPopup(true);
