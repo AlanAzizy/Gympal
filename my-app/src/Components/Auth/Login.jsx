@@ -71,7 +71,7 @@ export default function Login({state}) {
               <h5 className='fs-6 text-end mt-1 pe-1' style={{textDecoration:"none"}}><a href="#">forget password?</a></h5>
               <button type="submit" className='position-absolute w-75 rounded-pill py-1 text-white' style={{bottom:"25%",marginLeft:"9%",height:"8%",backgroundImage:"linear-gradient(#29C4F4, #113D76)",border:"none"}}>LOGIN</button>
               <div className='position-absolute w-100' style={{bottom:"20%"}}>
-                  <h5 className='fs-6 text-center' style={{textDecoration:"none"}}>Don't have an account?<a href="#" onClick={componentHandler}>Signup here</a></h5>
+                  <h5 className='fs-6 text-center' style={{textDecoration:"none"}}>Don't have an account? <a href="#" onClick={componentHandler}>Signup here</a></h5>
               </div>
             </form>
 
