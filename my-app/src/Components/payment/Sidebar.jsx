@@ -3,11 +3,13 @@ import { FaHome, FaUser, FaCreditCard } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { FaPeopleGroup } from "react-icons/fa6";
 import PaymentOptions from "./PaymentOptions";
+
 import Cookies from "js-cookies";
 
 const Sidebar = () => {
   const [isPaymentHovered, setPaymentHovered] = useState(false);
   const [isSidebarMinimized, setSidebarMinimized] = useState(false);
+  const [activeIcon, setActiveIcon]=useState("");
   const realData = useState([]);
   const navigate = useNavigate();
   const groupSidebar = {
@@ -20,6 +22,10 @@ const Sidebar = () => {
     borderRadius: "0px 20px 20px 0px",
     padding: "20px 20px 20px 20px"
   }
+  const handleIconClick = (iconName, route) => {
+    setActiveIcon(iconName); // Set the clicked icon as active
+    navigate(route); // Navigate to the route
+  };
   // const handlePaymentHover = () => {
   //   setPaymentHovered(true);
   // };
@@ -82,11 +88,11 @@ const Sidebar = () => {
         <div onClick={()=> handleLogout()} style={{width:"100px",height:"fit-content", marginLeft:"14px", fontSize:"20px"}} className="btn p-0 btn-danger position-absolute top-0 mt-4 p-2">
           Logout
         </div>
-        <FaHome size={50} onClick={() => navigate("/adminhome")} style={faHomeStyle} />
+        <FaHome size={50}  onClick={() => handleIconClick('home', "/adminhome")} style={activeIcon === 'home' ? {...faHomeStyle, color: "black"} : faHomeStyle} />
         <div style={groupSidebar}>
-          <FaUser size={40} onClick={() => navigate("/adminkelas")} style={iconStyle} />
-          <FaCreditCard size={40} onClick={() => navigate("/adminpayment")} style={iconStyle} />
-          <FaPeopleGroup size={40} onClick={() => navigate("/adminmembership")} style={iconStyle} />  
+          <FaUser size={40} onClick={() => handleIconClick('user', "/adminkelas")} style={activeIcon === 'user' ? {...FaUser, color: "black"} : FaUser} />
+          <FaCreditCard size={40} onClick={() => handleIconClick('payment', "/adminpayment")} style={activeIcon === 'payment' ? {...FaCreditCard, color: "black"} : FaCreditCard} />
+          <FaPeopleGroup size={40} onClick={() => handleIconClick('membership', "/adminmembership")} style={activeIcon === 'membership' ? {...FaPeopleGroup, color: "black"} : FaPeopleGroup} />  
         </div>
         </div>
       </div>
