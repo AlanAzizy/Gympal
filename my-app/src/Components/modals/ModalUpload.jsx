@@ -19,6 +19,7 @@ export function ModalUpload({ show, close, data, toShow, message }) {
 
   const handleSend = async () => {
     try{
+      const token = Cookies.getItem('jwt');
       const response = await axios.post("https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/pembayaran/createPembayaran", {
         "metode" : data.method,
         "bulan" : data.months,

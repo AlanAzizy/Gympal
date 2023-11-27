@@ -33,6 +33,7 @@ function CardClassAdd() {
 
   const saveData = async () => {
     try {
+      const token = Cookies.getItem('jwt');
       const response = await axios.post("https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/addNewKelas", {
         namaKelas,
         tanggal,

@@ -5,6 +5,7 @@ import Table from "../Components/payment/RowTable";
 import { Link, useNavigate } from "react-router-dom";
 import Sidebar from "../Components/payment/Sidebar";
 import axios from "axios";
+import Cookies from "js-cookies";
 
 const dummydata = [
   {
@@ -45,6 +46,7 @@ const Membership = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = Cookies.getItem('jwt');
         const response = await axios.get(apiUrl, 
           {
             headers: {
@@ -69,6 +71,7 @@ const Membership = () => {
 
   const fetchDatafromChild = async () => {
     try {
+      const token = Cookies.getItem('jwt');
       const response = await axios.get(apiUrl,
         {
           headers: {

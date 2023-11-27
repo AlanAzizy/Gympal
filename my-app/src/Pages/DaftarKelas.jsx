@@ -98,6 +98,7 @@ const DaftarKelas = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = Cookies.getItem('jwt');
         const response = await axios.get(apiUrl,
           {
             headers: {

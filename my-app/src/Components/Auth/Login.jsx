@@ -28,15 +28,7 @@ export default function Login({state}) {
         {
           email: email,
           password: password
-        },
-        {
-          headers: {
-            'cookies' : token,
-            'Access-Control-Allow-Origin': '*', 
-            'Content-Type': 'application/json'
-        }
-          
-        });
+        },);
         Cookies.setItem('jwt',(response.data.token), { expires: (jwtDecode(response.data.token).exp) });
         setIsloading(false);
         if (response.status === 201) {
@@ -58,6 +50,7 @@ export default function Login({state}) {
     }catch(error) {
         setValid(false);;
         console.error('Error saat mengambil data:', error);
+        setIsloading(false);
       };
 
   }

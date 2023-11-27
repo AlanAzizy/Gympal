@@ -33,14 +33,6 @@ export default function Register({state, toLogin}) {
           password: password,
           alamat : alamat,
           noTelepon : noTelepon
-        },
-        {
-          headers: {
-            'cookies' : token,
-            'Access-Control-Allow-Origin': '*', 
-            'Content-Type': 'application/json'
-        }
-          
         });
         if (response.status === 201) {
           

@@ -50,6 +50,7 @@ function CardClassEdit() {
 
   const saveData = async () => {
     try {
+      const token = Cookies.getItem('jwt');
       const response = await axios.put("https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/updateKelas", {
         kelas_id,
         namaKelas,
@@ -81,6 +82,7 @@ function CardClassEdit() {
 
   const deleteData = async () => {
     try {
+      const token = Cookies.getItem('jwt');
       const response = await axios.delete(`https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/removeKelas/${kelas_id}`
       , {
         headers: {
