@@ -3,6 +3,7 @@ import { ClassData } from "./cardDummy";
 import JohnDoe from "../../Assets/gympal5 1.png";
 import zumba from "../../Assets/zumba2.jpg";
 import yoga from "../../Assets/yoga.jpg";
+import question from "../../Assets/qmark.png";
 import axios from 'axios';
 import Cookies from 'js-cookies';
 import MendaftarKelas from "../PopupKelas/MendaftarKelas"
@@ -73,8 +74,10 @@ function CardClass() {
               <img src={JohnDoe} className="card-img-top rounded-4" alt="..." />
             ) : data.namaKelas === "zumba" || data.namaKelas === "Zumba" ? (
               <img src={zumba} className="card-img-top rounded-4" alt="..." />
-            ) : (
+            ) : data.namaKelas === "yoga" || data.namaKelas === "Yoga" ? (
               <img src={yoga} className="card-img-top rounded-4" alt="..." />
+            ) : (
+              <img src={question} className="card-img-top rounded-4" alt="..." />
             )}
             <div className="card-body">
               <table>

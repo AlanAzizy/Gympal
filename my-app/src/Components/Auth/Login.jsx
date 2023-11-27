@@ -70,15 +70,40 @@ export default function Login({state}) {
             <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
             </svg></button></div>}
             <form onSubmit={submitHandler} className="mb-3 bg-white rounded py-5 px-3 opacity-75 position-relative" style={{width:"60%",height:"80%"}}>
-              <h1>LOGIN</h1>
-              <label  className="form-label py-1">Email address</label>
-              <input onChange={(event)=> setEmail(event.target.value)} type="email" className="form-control border-1" id="exampleFormControlInput1" placeholder="name@example.com" value={email} style={{height:"7%"}}/>
-              <label  className="form-label py-1">Password</label>
-              <input onChange={(event)=> setPassword(event.target.value)} type="password" className="form-control border-1" id="exampleFormControlInput1" placeholder="input your password" value={password} style={{height:"7%"}}/>
-              <h5 className='fs-6 text-end mt-1 pe-1' style={{textDecoration:"none"}}><a href="#">forget password?</a></h5>
-              <button type="submit" className='position-absolute w-75 rounded-pill py-1 text-white' style={{bottom:"25%",marginLeft:"9%",height:"8%",backgroundImage:"linear-gradient(#29C4F4, #113D76)",border:"none"}}>LOGIN</button>
-              <div className='position-absolute w-100' style={{bottom:"20%"}}>
-                  <h5 className='fs-6 text-center' style={{textDecoration:"none"}}>Don't have an account? <a href="#" onClick={componentHandler}>Signup here</a></h5>
+              <h1 style={{fontFamily:"Poppins", fontWeight: "bold", textAlign: "center"}}>LOGIN</h1>
+              <label  className="form-label py-1" style ={{ fontFamily:"Poppins"}}>Email address</label>
+              <input
+                onChange={(event) => setEmail(event.target.value)}
+                type="email"
+                className="form-control border-1"
+                style={{
+                  textDecoration: "none",
+                  fontFamily: "Poppins",
+                  height: "7%",
+                }}
+                id="exampleFormControlInput1"
+                placeholder="name@example.com"
+                value={email}
+              />
+              <label  className="form-label py-1"style ={{ fontFamily:"Poppins"}}>Password</label>
+              <input
+                onChange={(event) => setPassword(event.target.value)}
+                type="password"
+                className="form-control border-1"
+                style={{
+                  textDecoration: "none",
+                  fontFamily: "Poppins",
+                  height: "7%",
+                }}
+                id="exampleFormControlInput1"
+                placeholder="Input your password"
+                value={password}
+              />
+
+              <h5 className='fs-6 text-end mt-1 pe-1' style={{textDecoration:"none", fontFamily:"Poppins" }}><a href="#">forget password?</a></h5>
+              <button type="submit" className='position-absolute w-75 rounded-pill py-1 text-white' style={{bottom:"25%",marginLeft:"9%",height:"8%",backgroundImage:"linear-gradient(#29C4F4, #113D76)",border:"none" ,fontFamily:"Poppins",fontWeight: "bold",}}>LOGIN</button>
+              <div className='position-absolute w-100' style={{bottom:"18%"}}>
+                  <h5 className='fs-6 text-center' style={{textDecoration:"none", fontFamily:"Poppins", marginTop: "10px"}}>Don't have an account? <a href="#" onClick={componentHandler}>Signup here</a></h5>
               </div>
             </form>
 
