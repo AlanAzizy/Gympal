@@ -67,7 +67,7 @@ export default function Login({state}) {
               <label  className="form-label py-1">Email address</label>
               <input onChange={(event)=> setEmail(event.target.value)} type="email" className="form-control border-1" id="exampleFormControlInput1" placeholder="name@example.com" value={email} style={{height:"7%"}}/>
               <label  className="form-label py-1">Password</label>
-              <input onChange={(event)=> setPassword(event.target.value)} type="password" className="form-control border-1" id="exampleFormControlInput1" placeholder="input tour password" value={password} style={{height:"7%"}}/>
+              <input onChange={(event)=> setPassword(event.target.value)} type="password" className="form-control border-1" id="exampleFormControlInput1" placeholder="input your password" value={password} style={{height:"7%"}}/>
               <h5 className='fs-6 text-end mt-1 pe-1' style={{textDecoration:"none"}}><a href="#">forget password?</a></h5>
               <button type="submit" className='position-absolute w-75 rounded-pill py-1 text-white' style={{bottom:"25%",marginLeft:"9%",height:"8%",backgroundImage:"linear-gradient(#29C4F4, #113D76)",border:"none"}}>LOGIN</button>
               <div className='position-absolute w-100' style={{bottom:"20%"}}>
