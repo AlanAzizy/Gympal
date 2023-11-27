@@ -45,6 +45,7 @@ const DaftarKelas = () => {
     overflow: "auto",
     width: "100vw",
     fontFamily: "Poppins",
+    paddingBottom: "20px"
   };
 
   const sidebarWidth = isSidebarMinimized ? "90px" : "250px";
