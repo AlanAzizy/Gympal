@@ -1,5 +1,5 @@
 import React from "react";
-import JohnDoe from "../../Assets/john-doe.jpg"
+import JohnDoe from "../../Assets/profile.jpg"
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookies'
 

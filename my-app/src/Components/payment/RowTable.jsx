@@ -122,7 +122,7 @@ function formatDateToYYYYMMDD(date) {
   return `${day}-${month}-${year}`;
 }
 
-const Table = ({datas,isLoading, fetchData}) => {
+const Table = ({datas, isLoading, fetchData}) => {
 
 
   const iconStyle = {
@@ -136,7 +136,7 @@ const Table = ({datas,isLoading, fetchData}) => {
       borderRadius: "20px",
       width:"90%",
     }}>
-<thead>
+    <thead>
       <tr className="row w-100 ms-0" style={{ paddingTop: "15px", paddingBottom: "15px", paddingRight: "0px" }}>
         <th className="col-1">No</th>
         <th className="col-3">ID</th>

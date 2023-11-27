@@ -96,6 +96,17 @@ const Membership = () => {
       "linear-gradient(180deg, #113D76 0%, rgba(217, 217, 217, 0.00) 100%)",
     height: "100vh",
     fontFamily: "poppins",
+    paddingBottom: "20px",
+    marginBottom : "50px"
+  };
+
+  const gradientStyle2 = {
+    background:
+      "linear-gradient(180deg, #113D76 0%, rgba(217, 217, 217, 0.00) 100%)",
+    height: "fit-content",
+    fontFamily: "poppins",
+    paddingBottom: "20px",
+    marginBottom : "0px"
   };
 
   const sidebarWidth = isSidebarMinimized ? "90px" : "250px";
@@ -113,6 +124,7 @@ const Membership = () => {
     width: "90%",
     flexDirection: "column",
     padding: "20px",
+    paddingBottom: "20px",  // Add padding to the bottom
     display: "flex",
   };
 
@@ -131,7 +143,7 @@ const Membership = () => {
   };
 
   return (
-    <div style={gradientStyle} className="d-flex ">
+    <div style={isLoading ? gradientStyle : gradientStyle2} className="d-flex ">
       {/* Sidebar */}
       <div className="col-1 h-100"></div>
       <div style={contentStyle} className="col-11">
