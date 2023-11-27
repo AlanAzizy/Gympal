@@ -36,7 +36,7 @@ const dummydata = [
 
 const Pembayaran = () => {
 
-  const apiUrl = 'https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/pembayaran/getAllPembayaran'
+  const apiUrl = 'https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/pembayaran/getAllPembayaran'
   const [data, setData] = useState(null);
   const [isLoading, setIsloading] = useState(true);
   const [hasDaftar, setHasDaftar] = useState(false);
@@ -70,7 +70,14 @@ const Pembayaran = () => {
 
   const fetchDatafromChild = async () => {
     try {
-      const response = await axios.get(apiUrl);
+      const response = await axios.get(apiUrl, 
+        {
+          headers: {
+            'cookies' : token,
+            'Access-Control-Allow-Origin': '*', 
+            'Content-Type': 'application/json'
+        }
+        });
       console.log(response.data);
       setData(response.data);
       setIsloading(false);

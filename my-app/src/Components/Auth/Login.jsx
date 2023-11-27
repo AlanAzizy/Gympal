@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function Login({state}) {
-  const apiUrl = 'http://localhost:3001/auth/login';
+  const apiUrl = 'https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/auth/login';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [user, setUser] = useState({});
@@ -30,7 +30,11 @@ export default function Login({state}) {
           password: password
         },
         {
-          headers:{"Content-Type": "application/json"}
+          headers: {
+            'cookies' : token,
+            'Access-Control-Allow-Origin': '*', 
+            'Content-Type': 'application/json'
+        }
           
         });
         Cookies.setItem('jwt',(response.data.token), { expires: (jwtDecode(response.data.token).exp) });

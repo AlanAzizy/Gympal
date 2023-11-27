@@ -8,7 +8,7 @@ import "../../App.css"
 
 function CardClass() {
 
-  const apiUrl = 'https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/kelasTerdaftar'
+  const apiUrl = 'https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/kelasTerdaftar'
   const [data, setData] = useState(null);
   const [isLoading, setIsloading] = useState(true);
   const [hasDaftar, setHasDaftar] = useState(false);
@@ -43,7 +43,7 @@ function CardClass() {
     const token = Cookies.getItem('jwt');
     console.log((token));
     try{
-      const response = await axios.put("https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/menghapusKelas", {_id : id}, {
+      const response = await axios.put("https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/menghapusKelas", {_id : id}, {
         headers: {
             'cookies' : token,
             'Access-Control-Allow-Origin': '*', 

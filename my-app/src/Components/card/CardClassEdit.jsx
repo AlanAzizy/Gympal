@@ -50,13 +50,19 @@ function CardClassEdit() {
 
   const saveData = async () => {
     try {
-      const response = await axios.put("https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/updateKelas", {
+      const response = await axios.put("https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/updateKelas", {
         kelas_id,
         namaKelas,
         tanggal,
         durasi,
         detail,
         instruktur
+      }, {
+        headers: {
+          'cookies' : token,
+          'Access-Control-Allow-Origin': '*', 
+          'Content-Type': 'application/json'
+      }
       })
       if (response.status===201){
         navigate("/adminkelas")
@@ -75,8 +81,14 @@ function CardClassEdit() {
 
   const deleteData = async () => {
     try {
-      const response = await axios.delete(`https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/removeKelas/${kelas_id}`
-      )
+      const response = await axios.delete(`https://gympalfinal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/removeKelas/${kelas_id}`
+      , {
+        headers: {
+          'cookies' : token,
+          'Access-Control-Allow-Origin': '*', 
+          'Content-Type': 'application/json'
+      }
+      })
       if (response.status===201){
         navigate("/adminkelas")
       }
