@@ -35,7 +35,7 @@ const dummydata = [
 
 const Membership = () => {
 
-  const apiUrl = 'http://localhost:3001/kelolaAnggota/getAllDataAnggota'
+  const apiUrl = 'https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelolaAnggota/getAllDataAnggota'
   const [data, setData] = useState(null);
   const [isLoading, setIsloading] = useState(true);
   const [hasDaftar, setHasDaftar] = useState(false);
@@ -46,7 +46,6 @@ const Membership = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(apiUrl);
-        console.log(response.data);
         setData(response.data);
         setIsloading(false);
       } catch (error) {
@@ -111,7 +110,7 @@ const Membership = () => {
   };
 
   const contentStyle = {
-    width: "100%",
+    width: "90%",
     flexDirection: "column",
     padding: "20px",
     display: "flex",

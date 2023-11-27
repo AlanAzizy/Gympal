@@ -36,9 +36,7 @@ export default function Register({state}) {
           headers:{"Content-Type": "application/json"}
           
         });
-        console.log(jwtDecode(response.data.token).exp)
         Cookies.setItem('token',response.data.token, { expires: (jwtDecode(response.data.token).exp) });
-        console.log(response);
         if (response.status === 201) {
           // Perform actions for successful login
           // For example, set tokens or user data in local storage or state
@@ -48,13 +46,12 @@ export default function Register({state}) {
           newData.nama = username;
           newData.email = email;
           localStorage.setItem('pengguna', JSON.stringify(newData));
-          navigate('/profile'); // Replace '/dashboard' with your desired route
+          setTimeout(navigate('/profile'),100); // Replace '/dashboard' with your desired route
         } else {
           // Handle unsuccessful login
           console.log('Login failed');
         }
     }catch(error) {
-        console.log(error.response.data.error.email)
         setValid(false);;
         console.error('Error saat mengambil data:', error);
       };

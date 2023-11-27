@@ -15,4 +15,17 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-export default ProtectedRoute;
+const ProtectedRouteAdmin = ({ children }) => {
+
+  const token = Cookies.getItem("jwt");
+  const role = JSON.parse(localStorage.getItem('pengguna')).role;
+  if (!token) {
+      return <Navigate to="/" replace />;
+    }
+  if (role!=='admin'){
+    return <Navigate to="/" replace/>
+  }
+  return children;
+};
+
+export {ProtectedRoute, ProtectedRouteAdmin};

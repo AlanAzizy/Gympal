@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Cookies from 'js-cookies';
 import axios from "axios";
+import "../../App.css"
 
 const Notification = (NotifValue) => {
   const [NotificationValue, setNotification] = useState(NotifValue);
@@ -50,7 +51,6 @@ const Verif = ({verifValue, id, fetchData}) => {
       handleChange(id,'setAnggotaNonActive');
       setVerificationValue(false)
     }else{
-      console.log(id);
       handleChange(id,'setAnggotaActive');
       setVerificationValue(true)
     }
@@ -64,7 +64,7 @@ const Verif = ({verifValue, id, fetchData}) => {
 
     const token = Cookies.getItem('jwt');
     try{
-      const response = await axios.put(`http://localhost:3001/kelolaAnggota/${toActive}/${id}`, { params: {
+      const response = await axios.put(`https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelolaAnggota/${toActive}/${id}`, { params: {
         "idAnggota" : id
       },
         headers: {
@@ -74,8 +74,7 @@ const Verif = ({verifValue, id, fetchData}) => {
         }
     } )
     if (response.status==200 || response.status==209){ 
-      console.log(toActive);
-      console.log(response.data);
+
     }
     }catch(err){
       console.log(err)
@@ -129,15 +128,13 @@ const Table = ({datas,isLoading, fetchData}) => {
   const iconStyle = {
     cursor: "pointer",
   };
-  console.log(datas);
-  console.log(isLoading);
   return (
     <table style={{
       background: "#000000",
       opacity: "70%",
       color: "white",
       borderRadius: "20px",
-      width:"90%"
+      width:"90%",
     }}>
 <thead>
       <tr className="row w-100 ms-0" style={{ paddingTop: "15px", paddingBottom: "15px", paddingRight: "0px" }}>
@@ -150,7 +147,12 @@ const Table = ({datas,isLoading, fetchData}) => {
       </tr>
     </thead>
     <tbody style={{ borderRadius: "20px" }}>
-      {!isLoading && datas.map((data, index) => (
+      {isLoading  ? <div className="w-screen h-screen position-fixed top-50 start-50"><svg width="50" className="spinner" height="50" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M4.38798 12.616C3.36313 12.2306 2.46328 11.5721 1.78592 10.7118C1.10856 9.85153 0.679515 8.82231 0.545268 7.73564C0.411022 6.64897 0.576691 5.54628 1.02433 4.54704C1.47197 3.54779 2.1845 2.69009 3.08475 2.06684C3.98499 1.4436 5.03862 1.07858 6.13148 1.01133C7.22435 0.944078 8.31478 1.17716 9.28464 1.68533C10.2545 2.19349 11.0668 2.95736 11.6336 3.89419C12.2004 4.83101 12.5 5.90507 12.5 7"
+          stroke="black"
+        />
+      </svg> </div>: datas.map((data, index) => (
         <tr key={data.id} className="row ms-0" style={{ paddingTop: "10px", paddingBottom: "10px" }}>
           <td className="col-1">{index+1}</td>
           <td className="col-3">{data.id}</td>

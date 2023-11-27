@@ -25,6 +25,7 @@ const gradientStyle = {
     alignSelf: "self-start",
     justifySelf: "self-start",
     margin: "20px",
+    
   };
   
 export default function EditKelas(){
@@ -33,13 +34,13 @@ export default function EditKelas(){
     
     return (
         <>
-        <div className="d-flex flex-column align-items-center py-auto justify-content-center position-relative" style={gradientStyle}>
+        <div className="d-flex flex-column align-items-center py-auto justify-content-start gap-10 position-relative" style={gradientStyle}>
           <div className="btn btn-danger mx-auto position-absolute w-25" style={{bottom:"30px"}} onClick={()=>navigate("/adminkelas")}>
               Cancel
           </div>
             {/* Sidebar */}
             <Sidebar />
-            <h1 style={welcomeStyle}>Edit Kelas</h1>
+            <h1 style={welcomeStyle} className="mx-auto mt-5 mb-5">Edit Kelas</h1>
             <CardClassEdit />
         </div>
         </>

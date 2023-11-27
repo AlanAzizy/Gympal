@@ -52,8 +52,6 @@ const HomeAdmin = () => {
   };
 
 const contentStyle = {
-  position: "relative",
-  flex: 1,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -67,10 +65,6 @@ const welcomeStyle = {
   fontWeight: 700,
   letterSpacing: 0,
   lineHeight: "normal",
-  position: "absolute",
-  top: "50%",
-  left: "45%",
-  transform: "translate(-50%, -50%)",
   textDecoration: "underline",
 };
 
@@ -80,8 +74,8 @@ const welcomeStyle = {
       <Sidebar />
 
       {/* Content */}
-      <div style={contentStyle}>
-        <h1 style={welcomeStyle}>Welcome</h1>
+      <div style={contentStyle} className="d-flex justify-content-center align-items-center w-100">
+        <h1 style={welcomeStyle} className="">Welcome</h1>
         {/* Add more content as needed */}
       </div>
     </div>

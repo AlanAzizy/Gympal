@@ -8,6 +8,7 @@ import Navbar from "../Components/navbar/Navbar";
 import axios from "axios";
 import Cookies from "js-cookies"
 import { useNavigate } from "react-router-dom";
+import "../App.css"
 
 
 const PaymentOptions = () => {
@@ -40,9 +41,9 @@ const DaftarKelas = () => {
   const gradientStyle = {
     background:
       "linear-gradient(180deg, #113D76 0%, rgba(217, 217, 217, 0.00) 100%)",
-    height: "screen",
+    height: "100vh",
     overflow: "auto",
-    width : "100vw",
+    width: "100vw",
     fontFamily: "Poppins",
   };
 
@@ -66,9 +67,9 @@ const DaftarKelas = () => {
     position: "relative",
     height: "screen",
     display: "flex",
-    padding:"20px 20px 20px 20px",
+    padding: "20px 20px 20px 20px",
     alignItems: "center",
-    overflow:"auto",
+    overflow: "auto",
     justifyContent: "center",
 
   };
@@ -82,10 +83,10 @@ const DaftarKelas = () => {
     lineHeight: "normal",
     textAlign: "center",
     textDecoration: "underline",
-    paddingTop:"20px"
+    paddingTop: "20px"
   };
 
-  const apiUrl = 'http://localhost:3001/kelas/allKelas'
+  const apiUrl = 'https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/allKelas'
   const [data, setData] = useState(null);
   const [isLoading, setIsloading] = useState(true);
   const [showStatusPopup, setShowStatusPopup] = useState(false);
@@ -99,7 +100,6 @@ const DaftarKelas = () => {
         const response = await axios.get(apiUrl);
         setData(response.data.kelas);
         setIsloading(false);
-        console.log(response.data.kelas);
       } catch (error) {
         console.error('Error fetching data:', error);
         // Handle error or set error state
@@ -107,32 +107,29 @@ const DaftarKelas = () => {
         setIsloading(false);
       }
     };
-  
+
     fetchData();
   }, []);
-  
 
-  const addClass =  async (id) => {
+
+  const addClass = async (id) => {
     const token = Cookies.getItem('jwt');
-    console.log((token));
-    try{
-      const response = await axios.put("http://localhost:3001/kelas/mendaftarKelas", {_id : id}, {
+    try {
+      const response = await axios.put("https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/mendaftarKelas", { _id: id }, {
         headers: {
-            'cookies' : token,
-            'Access-Control-Allow-Origin': '*', 
-            'Content-Type': 'application/json'
+          'cookies': token,
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
         }
-    } )
-    if (response.status === 201 || response.status === 209) {
-      console.log("Class added successfully!");
-      setStatusMessage("Class added");
-      setShowStatusPopup(true);
+      })
+      if (response.status === 201 || response.status === 209) {
+        setStatusMessage("Class added");
+        setShowStatusPopup(true);
 
-      // Log the values
-      console.log("statusMessage:", statusMessage);
-      console.log("showStatusPopup:", showStatusPopup);
-    }
-    }catch(err){
+        // Log the values
+
+      }
+    } catch (err) {
       console.log(err)
     }
   }
@@ -147,20 +144,20 @@ const DaftarKelas = () => {
     <div style={gradientStyle}>
       {/* Sidebar */}
       <Sidebar />
-      <div className="d-flex w-100 justify-content-end row" style={{height:"100px"}}>
+      <div className="d-flex w-100 justify-content-end row" style={{ height: "100px" }}>
         <h1 style={welcomeStyle}>Daftar Kelas</h1>
         <div className="col-7"></div>
         <h3 className="my-auto col-2 text-white text-end">Add Kelas</h3>
-        <button  onClick={()=>navigate("/adminaddkelas")} className="custom-button col-1 bg-transparent ps-0" style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                border: "none",
-                padding: "0px 0px 0px 0px",
-                marginRight:"0",
-                boxShadow: "none", /* Remove box shadow */
-                marginBottom:"10px",
-              }}>
+        <button onClick={() => navigate("/adminaddkelas")} className="custom-button col-1 bg-transparent ps-0" style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          border: "none",
+          padding: "0px 0px 0px 0px",
+          marginRight: "0",
+          boxShadow: "none", /* Remove box shadow */
+          marginBottom: "10px",
+        }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="40"
@@ -180,12 +177,18 @@ const DaftarKelas = () => {
         <div className="col-1"></div>
       </div>
       {/* Content */}
-      <div className="d-flex flex-wrap gap-2 mx-auto" style={{width:"90vw", paddingTop:"50px"}}>
-        {!isLoading && data.map((el)=>(<CardClassSingle data={el} addClass={addClass}/>))}
+      <div className="d-flex flex-wrap gap-2 mx-auto" style={{ width: "90vw", paddingTop: "50px" }}>
+        {isLoading ? <div className="w-screen h-screen position-fixed top-50 start-50"><svg width="50" className="spinner" height="50" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M4.38798 12.616C3.36313 12.2306 2.46328 11.5721 1.78592 10.7118C1.10856 9.85153 0.679515 8.82231 0.545268 7.73564C0.411022 6.64897 0.576691 5.54628 1.02433 4.54704C1.47197 3.54779 2.1845 2.69009 3.08475 2.06684C3.98499 1.4436 5.03862 1.07858 6.13148 1.01133C7.22435 0.944078 8.31478 1.17716 9.28464 1.68533C10.2545 2.19349 11.0668 2.95736 11.6336 3.89419C12.2004 4.83101 12.5 5.90507 12.5 7"
+            stroke="black"
+          />
+        </svg></div>
+          : data.map((el) => (<CardClassSingle data={el} addClass={addClass} />))}
       </div>
       {/* Render the StatusPopup component */}
-        {showStatusPopup && <StatusPopup message={statusMessage} onClose={() => setShowStatusPopup(false)} />}
-      </div>
+      {showStatusPopup && <StatusPopup message={statusMessage} onClose={() => setShowStatusPopup(false)} />}
+    </div>
 
   );
 };

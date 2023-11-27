@@ -33,7 +33,7 @@ function CardClassAdd() {
 
   const saveData = async () => {
     try {
-      const response = await axios.post("http://localhost:3001/kelas/addNewKelas", {
+      const response = await axios.post("https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/addNewKelas", {
         namaKelas,
         tanggal,
         durasi,
@@ -41,7 +41,6 @@ function CardClassAdd() {
         instruktur
       })
       if (response.status===201){
-        console.log(response.data.message);
         setShowPopup(true);
         toast.success('Class added successfully!', {
           position: toast.POSITION.TOP_RIGHT,

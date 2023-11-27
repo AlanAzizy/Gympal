@@ -3,6 +3,7 @@ import { FaHome, FaUser, FaCreditCard } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { FaPeopleGroup } from "react-icons/fa6";
 import PaymentOptions from "./PaymentOptions";
+import Cookies from "js-cookies";
 
 const Sidebar = () => {
   const [isPaymentHovered, setPaymentHovered] = useState(false);
@@ -45,32 +46,48 @@ const Sidebar = () => {
   //   <button onClick={toggleSidebar}>-</button>
   // );
   const faHomeStyle = {
-    cursor: "pointer",  // Add right margin to FaHome icon
+    cursor: "pointer",
+    top : "70px",
+    marginBottom : "20px",
+    marginLeft :"15px" // Add right margin to FaHome icon
   };
   const sidebarStyle = {
     position : "fixed",
     left : "0px",
-    top : "50px",
     width: "fit-content",
     display: "flex",
-    padding: "68px 40px 0px 0px",
+    padding: "0 40px 0px 0px",
     flexDirection: "column",
     alignItems: "center",
     gap: "20px",
     color: "white",
-    zIndex : "1"
+    zIndex : "1",
+    height : "90vh",
+    fontFamily : "poppins"
   };
   const iconStyle = {
     cursor: "pointer",
   };
+
+  const handleLogout = () => {
+    Cookies.removeItem('jwt');
+    localStorage.removeItem('pengguna');
+    navigate("/");
+  }
+
   return (
     <>
       <div style={sidebarStyle}>
+        <div className="position-relative h-100 d-flex flex-column justify-content-center" >
+        <div onClick={()=> handleLogout()} style={{width:"120px",height:"fit-content", marginLeft:"14px", fontSize:"25px"}} className="btn p-0 btn-danger position-absolute top-0 mt-4 p-2">
+          Logout
+        </div>
         <FaHome size={50} onClick={() => navigate("/adminhome")} style={faHomeStyle} />
         <div style={groupSidebar}>
           <FaUser size={40} onClick={() => navigate("/adminkelas")} style={iconStyle} />
           <FaCreditCard size={40} onClick={() => navigate("/adminpayment")} style={iconStyle} />
-          <FaPeopleGroup size={40} onClick={() => navigate("/adminmembership")} style={iconStyle} />
+          <FaPeopleGroup size={40} onClick={() => navigate("/adminmembership")} style={iconStyle} />  
+        </div>
         </div>
       </div>
     </>

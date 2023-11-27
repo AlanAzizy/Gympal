@@ -12,8 +12,10 @@ export default function Navbar() {
     const path = location.pathname;
     if (path === "/class") {
       setActiveTab("class");
-    } else {
+    }else if(path==="/profile") {
       setActiveTab("profile");
+    }else{
+      setActiveTab("myclass");
     }
   }, [location.pathname]);
 
@@ -32,6 +34,9 @@ export default function Navbar() {
               </Link>
               <Link to="/class" className={`nav-link ${isTabActive("class") ? "active fw-bold" : ""} text-light`}>
                 Class
+              </Link>
+              <Link to="/myclass" className={`nav-link ${isTabActive("myclass") ? "active fw-bold" : ""} text-light`}>
+                MyClass
               </Link>
               <li className="nav-link text-light">
                 <div class="btn-group">

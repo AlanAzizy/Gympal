@@ -14,7 +14,6 @@ function CardClassEdit() {
   const [durasi, setDurasi] = useState(0);
   const [instruktur, setInstruktur] = useState('');
   const location = useLocation();
-  console.log(location.state);
   const receivedData = location.state.data;
   const kelas_id = receivedData._id;
   const detail = receivedData.detail;
@@ -51,15 +50,15 @@ function CardClassEdit() {
 
   const saveData = async () => {
     try {
-      const response = await axios.put("http://localhost:3001/kelas/updateKelas", {
+      const response = await axios.put("https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/updateKelas", {
         kelas_id,
         namaKelas,
         tanggal,
         durasi,
-        detail
+        detail,
+        instruktur
       })
       if (response.status===201){
-        console.log(response.data.message);
         navigate("/adminkelas")
       }
       if (response.status===209){
@@ -75,12 +74,10 @@ function CardClassEdit() {
 
 
   const deleteData = async () => {
-    console.log(kelas_id);
     try {
-      const response = await axios.delete(`http://localhost:3001/kelas/removeKelas/${kelas_id}`
+      const response = await axios.delete(`https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/kelas/removeKelas/${kelas_id}`
       )
       if (response.status===201){
-        console.log(response.data.message);
         navigate("/adminkelas")
       }
       if (response.status===209){

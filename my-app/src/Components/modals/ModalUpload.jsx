@@ -19,7 +19,7 @@ export function ModalUpload({ show, close, data, toShow, message }) {
 
   const handleSend = async () => {
     try{
-      const response = await axios.post("http://localhost:3001/pembayaran/createPembayaran", {
+      const response = await axios.post("https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/pembayaran/createPembayaran", {
         "metode" : data.method,
         "bulan" : data.months,
         "buktiPembayaran" : "ini dia"

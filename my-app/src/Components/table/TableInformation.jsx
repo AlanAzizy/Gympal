@@ -7,11 +7,12 @@ function TableInformation({nama,email,expdate}) {
 
   const navigate = useNavigate();
 
-  console.log(expdate);
+
   if (expdate===undefined){
     expdate = new Date();
+    expdate.setDate(expdate.getDate()-1);
   }
-  console.log(expdate);
+
   function logoutHandler(){
     Cookies.removeItem('jwt');
     localStorage.removeItem('pengguna');

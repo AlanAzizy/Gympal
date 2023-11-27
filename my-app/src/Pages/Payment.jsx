@@ -13,7 +13,6 @@ function Payment() {
   const [message, setMessage] = useState('');
 
   const location = useLocation();
-  console.log(location);
   const {months, payYear} = location.state.data;
 
   const gradientBackgroundStyle = {

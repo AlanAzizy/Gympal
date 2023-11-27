@@ -36,7 +36,7 @@ const dummydata = [
 
 const Pembayaran = () => {
 
-  const apiUrl = 'http://localhost:3001/pembayaran/getAllPembayaran'
+  const apiUrl = 'https://gympal.whitesand-21748554.australiaeast.azurecontainerapps.io/pembayaran/getAllPembayaran'
   const [data, setData] = useState(null);
   const [isLoading, setIsloading] = useState(true);
   const [hasDaftar, setHasDaftar] = useState(false);
@@ -54,7 +54,6 @@ const Pembayaran = () => {
               'Content-Type': 'application/json'
           }
       });
-      console.log(response.data.data);
           setData(response.data.data);
           setIsloading(false);
       } catch (error) {
@@ -123,7 +122,7 @@ const Pembayaran = () => {
   };
 
   const contentStyle = {
-    width: "100%",
+    width: "90%",
     flexDirection: "column",
     padding: "20px",
     display: "flex",
