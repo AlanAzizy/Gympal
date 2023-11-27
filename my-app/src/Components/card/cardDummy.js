@@ -103,19 +103,19 @@ export const PromoteClassData = [
   {
     id: "1",
     months: "12",
-    payYear: 3300000,
-    payMonth: 275000,
+    payYear: "3.300.000",
+    payMonth: "275.000",
   },
   {
     id: "2",
     months: "6",
-    payYear: 2100000,
-    payMonth: 350000,
+    payYear: "2.100.000",
+    payMonth: "350.000",
   },
   {
     id: "1",
     months: "3",
-    payYear: 450000,
-    payMonth: 275000,
+    payYear: "1.350.000",
+    payMonth: "275.000",
   },
 ];

@@ -79,7 +79,7 @@ const Sidebar = () => {
     <>
       <div style={sidebarStyle}>
         <div className="position-relative h-100 d-flex flex-column justify-content-center" >
-        <div onClick={()=> handleLogout()} style={{width:"120px",height:"fit-content", marginLeft:"14px", fontSize:"25px"}} className="btn p-0 btn-danger position-absolute top-0 mt-4 p-2">
+        <div onClick={()=> handleLogout()} style={{width:"100px",height:"fit-content", marginLeft:"14px", fontSize:"20px"}} className="btn p-0 btn-danger position-absolute top-0 mt-4 p-2">
           Logout
         </div>
         <FaHome size={50} onClick={() => navigate("/adminhome")} style={faHomeStyle} />
