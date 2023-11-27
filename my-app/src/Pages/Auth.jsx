@@ -21,7 +21,7 @@ export default function Auth() {
         <div className='col-6 d-flex justify-content-center align-items-center'>
           <img src={logo} className='' style={{width : "30vw",height:"30vw"}}></img>    
         </div>
-          {isRegistered ? <Login  state={()=>setIsRegistered(!isRegistered)}/> : <Register state={()=>setIsRegistered(!isRegistered)}/>}    
+          {isRegistered ? <Login  state={()=>setIsRegistered(!isRegistered)}/> : <Register state={()=>setIsRegistered(!isRegistered) } toLogin={setIsRegistered}/>}    
         </div>
       </div>
     </>

@@ -41,6 +41,7 @@ export default function Login({state}) {
   
           // After successful login, navigate to the desired page
           localStorage.setItem('pengguna', JSON.stringify(response.data.pengguna));
+          console.log(response.data.pengguna)
           if (response.data.pengguna.role=="admin"){
             setTimeout(navigate('/adminhome'),500);
           }else{
